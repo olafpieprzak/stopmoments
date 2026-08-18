@@ -84,14 +84,13 @@ const IG_COUNT = 10;
 })();
 
 
-// ── OPINIE: karuzela ze strzałkami i samoprzewijaniem ────────────
+// ── OPINIE: karuzela ze strzałkami, przewijanie tylko ręczne ─────
 (function karuzelaOpinii(){
   const pas = document.getElementById('opPas');
   if (!pas) return;
   const tor = pas.querySelector('.op-tor');
   const wstecz = document.querySelector('.op-strzalka.wstecz');
   const dalej  = document.querySelector('.op-strzalka.dalej');
-  const wolnyRuch = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const krok = () => {
     const k = tor.querySelector('.op');
@@ -111,23 +110,6 @@ const IG_COUNT = 10;
   }
   wstecz && wstecz.addEventListener('click', () => przesun(-1));
   dalej  && dalej.addEventListener('click',  () => przesun(1));
-
-  // powolne samoprzewijanie, zatrzymywane przy najechaniu i dotknięciu
-  let stop = false, id = null;
-  ['mouseenter','touchstart','focusin'].forEach(e => pas.addEventListener(e, () => stop = true, {passive:true}));
-  ['mouseleave','focusout'].forEach(e => pas.addEventListener(e, () => stop = false));
-  document.querySelectorAll('.op-strzalka').forEach(b => {
-    b.addEventListener('mouseenter', () => stop = true);
-    b.addEventListener('mouseleave', () => stop = false);
-  });
-
-  if (!wolnyRuch) {
-    id = setInterval(() => {
-      if (stop) return;
-      pas.scrollLeft += 0.6;
-      zapetl();
-    }, 16);
-  }
 })();
 
 
