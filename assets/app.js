@@ -129,3 +129,31 @@ const IG_COUNT = 10;
     }, 16);
   }
 })();
+
+
+// ── FAQ: akordeon ────────────────────────────────────────────────
+(function akordeonFaq(){
+  const przyciski = document.querySelectorAll('.faq-q');
+  if (!przyciski.length) return;
+  przyciski.forEach(btn => btn.addEventListener('click', () => {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const otwarty = btn.getAttribute('aria-expanded') === 'true';
+
+    // zamknij pozostałe pytania
+    document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(inny => {
+      if (inny !== btn) {
+        inny.setAttribute('aria-expanded', 'false');
+        document.getElementById(inny.getAttribute('aria-controls')).style.height = '0px';
+      }
+    });
+
+    btn.setAttribute('aria-expanded', String(!otwarty));
+    panel.style.height = otwarty ? '0px' : panel.scrollHeight + 'px';
+  }));
+  addEventListener('resize', () => {
+    document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(btn => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      panel.style.height = panel.scrollHeight + 'px';
+    });
+  });
+})();
