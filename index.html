@@ -4,440 +4,128 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
-<title>StopMoments — Fotografia rodzinna i okolicznościowa | Monika Adamczyk</title>
-<meta name="description" content="Fotografia chrztów, ślubów, sesji rodzinnych i noworodkowych. Ropczyce, Sędziszów Małopolski, Dębica. 13 lat doświadczenia w zatrzymywaniu ulotnych chwil.">
+<title>Monika Adamczyk Fotografia — sesje biznesowe i rodzinne | Ropczyce, Podkarpacie</title>
+<meta name="description" content="Monika Adamczyk Fotografia — wybierz styl sesji: fotografia biznesowa i wizerunkowa dla firm, albo sesje rodzinne, śluby i chrzciny (StopMoments). Ropczyce, Podkarpacie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F3247;
+    --ink:#2E3540;
+    --blue:#6E869E;
+    --cream:#FBF8F4;
+    --paper:#FAF9F7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{height:100%}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--navy);
+    color:#fff;
+    height:100svh;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .brandbar{
+    position:fixed;top:0;left:0;right:0;z-index:5;
+    display:flex;justify-content:center;padding:26px 20px 0;
+    pointer-events:none;
+  }
+  .brandbar .name{
+    font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:.03em;
+    color:#fff;text-align:center;line-height:1.15;
+    text-shadow:0 2px 12px rgba(0,0,0,.35);
+  }
+  .brandbar .name small{
+    display:block;font-family:'Montserrat',sans-serif;font-size:.56rem;
+    letter-spacing:.32em;font-weight:500;opacity:.85;margin-top:3px;
+  }
+
+  .picker{height:100svh;display:flex}
+  .panel{
+    position:relative;flex:1;overflow:hidden;display:flex;align-items:flex-end;
+    transition:flex .5s ease;
+  }
+  .panel img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .panel:hover img{transform:scale(1.04)}
+  .panel::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,20,26,.15) 0%, rgba(15,20,26,.15) 45%, rgba(15,20,26,.82) 100%);
+    z-index:1;
+  }
+  .panel-content{position:relative;z-index:2;padding:48px;width:100%}
+  .panel .eyebrow{
+    display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:14px;
+  }
+  .panel h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.9rem,3vw,2.8rem);
+    line-height:1.1;margin-bottom:14px;
+  }
+  .panel p{
+    font-size:.92rem;color:rgba(255,255,255,.75);max-width:34ch;line-height:1.6;margin-bottom:20px;
+  }
+  .panel .cta{
+    display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px;
+    transition:.25s;
+  }
+  .panel:hover .cta{border-color:#fff;gap:12px}
+  .panel .cta svg{width:14px;height:14px;flex-shrink:0}
+
+  .divider{
+    position:absolute;top:0;bottom:0;left:50%;width:1px;
+    background:rgba(255,255,255,.25);z-index:3;transform:translateX(-.5px);
+  }
+
+  @media(max-width:820px){
+    body{overflow-y:auto;height:auto}
+    .picker{flex-direction:column;height:auto}
+    .panel{min-height:52svh}
+    .divider{display:none}
+    .brandbar{position:absolute;padding-top:22px}
+  }
+</style>
 </head>
 <body>
 
-<nav id="nav" class="solid" data-stale="1">
-  <div class="nav-in">
-    <a href="index.html" class="brand">StopMoments<small>MONIKA ADAMCZYK FOTOGRAFIA</small></a>
-    <div class="nav-links">
-      <a href="chrzty.html">Chrzty</a>
-      <a href="sluby.html">Śluby</a>
-      <div class="nav-item">
-        <a href="#">Sesje</a>
-        <div class="dropdown">
-          <a href="sesje-rodzinne.html">Rodzinne i dziecięce</a>
-          <a href="sesje-noworodkowe.html">Noworodkowe</a>
-          <a href="sesje-narzeczenskie.html">Narzeczeńskie</a>
-          <a href="sesje-kobiece.html">Kobiece i ciążowe</a>
-          <a href="sesje-swiateczne.html">Świąteczne</a>
-          <div class="dd-sep"></div>
-          <a href="wieczor-panienski.html">Wieczór panieński i baby shower</a>
-          <a href="komunie.html">Reportaże komunijne</a>
-          <a href="przyjecia.html">Przyjęcia i studniówki</a>
-        </div>
-      </div>
-      <a href="#o-mnie">O mnie</a>
-      <a href="#faq">FAQ</a>
-      <a href="blog.html">Blog</a>
-      <a href="https://wa.me/48791601963" class="nav-cta" target="_blank" rel="noopener">Zapytaj o termin</a>
-    </div>
-    <div class="burger"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
-<header class="heroC">
-  <div class="heroC-top">
-    <div class="eyebrow">Fotografia rodzinna i okolicznościowa</div>
-    <h1>Chwile, które <em>mijają szybciej niż myślisz</em></h1>
-    <p>Od 13 lat towarzyszę rodzinom w najważniejszych dniach — chrztach, ślubach, pierwszych tygodniach życia. Fotografuję tak, jak chciałabym, żeby ktoś sfotografował moją rodzinę.</p>
-    <a href="#oferta" class="btn btn-p">Zobacz portfolio</a>
-    <a href="https://wa.me/48791601963" class="btn btn-o" target="_blank" rel="noopener">Zapytaj o termin</a>
-  </div>
-  <div class="heroC-imgs">
-    <picture><source type="image/webp" sizes="22vw" srcset="img/rodzina/rodzina-5-640.webp 640w, img/rodzina/rodzina-5-1000.webp 1000w, img/rodzina/rodzina-5-1600.webp 1600w"><img src="img/rodzina/rodzina-5.jpg" alt="Sesja rodzinna" fetchpriority="high"></picture>
-    <picture><source type="image/webp" sizes="48vw" srcset="img/hero/hero-chrzest-640.webp 640w, img/hero/hero-chrzest-1000.webp 1000w, img/hero/hero-chrzest-1600.webp 1600w"><img src="img/hero/hero-chrzest.jpg" alt="Chrzest święty — moment polania wodą" fetchpriority="high"></picture>
-    <picture><source type="image/webp" sizes="22vw" srcset="img/noworodki/noworodki-5-640.webp 640w, img/noworodki/noworodki-5-1000.webp 1000w, img/noworodki/noworodki-5-1600.webp 1600w"><img src="img/noworodki/noworodki-5.jpg" alt="Sesja noworodkowa" fetchpriority="high"></picture>
-  </div>
-</header>
-
-<!-- KATEGORIE -->
-<section id="oferta">
-  <div class="wrap">
-    <div class="narrow rv" style="text-align:center;margin-bottom:52px">
-      <div class="label">Oferta</div>
-      <h2>Co <em>fotografuję</em></h2>
-      <p class="lead">Każda kategoria ma własne portfolio i cennik. Wybierzcie to, co Was dotyczy.</p>
-    </div>
-    <div class="tiles rv">
-      <div class="tile-row">
-        <a class="tile" style="flex:1.497" href="chrzty.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/chrzciny-640.webp 640w, img/kafle/chrzciny-1000.webp 1000w, img/kafle/chrzciny-1600.webp 1600w"><img src="img/kafle/chrzciny.jpg" alt="Chrzest święty" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Chrzest święty</b><span>od 600 zł</span></div>
-        </a>
-        <a class="tile" style="flex:1.503" href="sluby.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/wesela-640.webp 640w, img/kafle/wesela-1000.webp 1000w, img/kafle/wesela-1600.webp 1600w"><img src="img/kafle/wesela.jpg" alt="Ślub i wesele" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Ślub i wesele</b><span>od 800 zł</span></div>
-        </a>
-        <a class="tile" style="flex:0.665" href="komunie.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/komunia-640.webp 640w, img/kafle/komunia-1000.webp 1000w, img/kafle/komunia-1600.webp 1600w"><img src="img/kafle/komunia.jpg" alt="Reportaż komunijny" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Reportaż komunijny</b><span>od 80 zł/dziecko</span></div>
-        </a>
-      </div>
-      <div class="tile-row">
-        <a class="tile" style="flex:1.491" href="przyjecia.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/studniowki-640.webp 640w, img/kafle/studniowki-1000.webp 1000w, img/kafle/studniowki-1600.webp 1600w"><img src="img/kafle/studniowki.jpg" alt="Przyjęcia i studniówki" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Przyjęcia i studniówki</b><span>od 900 zł</span></div>
-        </a>
-        <a class="tile" style="flex:1.503" href="sesje-rodzinne.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/rodzina-640.webp 640w, img/kafle/rodzina-1000.webp 1000w, img/kafle/rodzina-1600.webp 1600w"><img src="img/kafle/rodzina.jpg" alt="Sesje rodzinne" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Sesje rodzinne</b><span>od 600 zł</span></div>
-        </a>
-        <a class="tile" style="flex:0.665" href="sesje-noworodkowe.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/noworodki-640.webp 640w, img/kafle/noworodki-1000.webp 1000w, img/kafle/noworodki-1600.webp 1600w"><img src="img/kafle/noworodki.jpg" alt="Sesje noworodkowe" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Sesje noworodkowe</b><span>od 700 zł</span></div>
-        </a>
-      </div>
-      <div class="tile-row">
-        <a class="tile" style="flex:1.503" href="wieczor-panienski.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/panienski-640.webp 640w, img/kafle/panienski-1000.webp 1000w, img/kafle/panienski-1600.webp 1600w"><img src="img/kafle/panienski.jpg" alt="Wieczór panieński" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Wieczór panieński</b><span>od 600 zł</span></div>
-        </a>
-        <a class="tile" style="flex:0.665" href="sesje-narzeczenskie.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/milosne-640.webp 640w, img/kafle/milosne-1000.webp 1000w, img/kafle/milosne-1600.webp 1600w"><img src="img/kafle/milosne.jpg" alt="Sesje narzeczeńskie" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Sesje narzeczeńskie</b><span>od 700 zł</span></div>
-        </a>
-        <a class="tile" style="flex:0.666" href="sesje-kobiece.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/kobieca-640.webp 640w, img/kafle/kobieca-1000.webp 1000w, img/kafle/kobieca-1600.webp 1600w"><img src="img/kafle/kobieca.jpg" alt="Sesje kobiece i ciążowe" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Sesje kobiece i ciążowe</b><span>od 800 zł</span></div>
-        </a>
-        <a class="tile" style="flex:0.665" href="sesje-swiateczne.html">
-          <picture><source type="image/webp" sizes="(max-width:640px) 96vw, 34vw" srcset="img/kafle/swiateczne-640.webp 640w, img/kafle/swiateczne-1000.webp 1000w, img/kafle/swiateczne-1600.webp 1600w"><img src="img/kafle/swiateczne.jpg" alt="Sesje świąteczne" loading="lazy" decoding="async"></picture>
-          <div class="tile-txt"><b>Sesje świąteczne</b><span>od 600 zł</span></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- O MNIE -->
-<section class="sec-cream" id="o-mnie">
-  <div class="wrap about rv">
-    <div class="about-img">
-      <picture><source type="image/webp" sizes="(max-width:940px) 92vw, 46vw" srcset="img/omnie/monika-640.webp 640w, img/omnie/monika-1000.webp 1000w, img/omnie/monika-1600.webp 1600w"><img src="img/omnie/monika.jpg" alt="Monika Adamczyk — fotograf, Ropczyce" loading="lazy" decoding="async"></picture>
-    </div>
-    <div>
-      <div class="label">O mnie</div>
-      <h2>Jestem obok, ale <em>nie przeszkadzam</em></h2>
-      <p class="lead">Wiem, jak to jest stać z boku własnej uroczystości i zdać sobie sprawę, że wszystko dzieje się za szybko. Że babcia trzymająca dziecko na rękach, spojrzenie taty przy ołtarzu, drżące ręce przy pierwszym tańcu — to trwa sekundę i już nigdy nie wraca.</p>
-      <p class="lead">Dlatego pracuję cicho. Nie ustawiam Was godzinami, nie każę się uśmiechać na komendę. <strong>Obserwuję, przewiduję i naciskam spust wtedy, kiedy jest naprawdę.</strong> Bywa, że najpiękniejsze zdjęcie z całego dnia powstaje wtedy, gdy nikt nie wie, że patrzę.</p>
-      <p class="lead">Do każdej rodziny podchodzę tak, jak chciałabym, żeby ktoś podszedł do mojej. To nie jest zlecenie. To jeden dzień z Waszego życia, który dostaję w opiekę.</p>
-      <p class="sig">Monika</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section style="padding:0">
-  <div class="wrap">
-    <div class="stats rv">
-      <div class="stat"><b>13</b><span>lat doświadczenia</span></div>
-      <div class="stat"><b>460+</b><span>zrealizowanych sesji</span></div>
-      <div class="stat"><b>5.0</b><span>★ w 46 opiniach Google</span></div>
-      <div class="stat"><b>6h</b><span>na pierwsze zdjęcia</span></div>
-    </div>
-  </div>
-</section>
-
-
-<section class="opinie">
-  <div class="wrap rv" style="text-align:center">
-    <div class="label">Opinie Google</div>
-    <h2>Co mówią <em>klienci</em></h2>
-    <p class="ocena"><span class="gwiazdki">★★★★★</span> 5,0 na podstawie 46 opinii</p>
-  </div>
-  <div class="op-karuzela">
-    <button class="op-strzalka wstecz" aria-label="Poprzednia opinia">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="op-pas" id="opPas">
-      <div class="op-tor">
-      <figure class="op">
-        <div class="op-ikona" title="Ślub i wesele"><svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M21 6.5l1.9 3.4h-3.8L21 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-        <blockquote>Świetna fotograf oraz osoba, spełniła wszystkie nasze prośby odnośnie zdjęć podczas naszego wesela. Jakość zdjęć jest przepiękna, potrafi uchwycić to, co najważniejsze.</blockquote>
-        <figcaption><b>Gabriela O.</b><span>Ślub i wesele</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Zdjęcia zachwycają piękną kolorystyką i idealnie dobranym światłem. Ogromny plus za błyskawiczną realizację — już po dwóch dniach miałyśmy komplet zdjęć z wieczoru panieńskiego.</blockquote>
-        <figcaption><b>Justyna K.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Chrzest święty"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5v11M11 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28.5c4.4 0 8-3.3 8-7.4 0-3.4-3.6-8-8-11.6-4.4 3.6-8 8.2-8 11.6 0 4.1 3.6 7.4 8 7.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Dostarczyła nam niezapomniane i piękne zdjęcia z chrztu naszego dziecka. Polecam każdemu, kto szuka wyjątkowych i profesjonalnych zdjęć z ważnych wydarzeń w życiu.</blockquote>
-        <figcaption><b>Mateusz C.</b><span>Chrzest święty</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Monika cudownie uchwyciła chwile na white ladies party. Była, ale tak jakby jej nie było — nasze wzruszenia, uśmiechy, zabawę.</blockquote>
-        <figcaption><b>Anna S.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Sesja zdjęciowa"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="8.5" width="26" height="18.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 8.5l2-3.5h6l2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Sesja przebiegła w miłej, swobodnej atmosferze, a jednocześnie bardzo profesjonalnie. Zdjęcia są pełne emocji, pięknie uchwycone i dopracowane w każdym detalu.</blockquote>
-        <figcaption><b>Patrycja R.</b><span>Sesja zdjęciowa</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Ślub i wesele"><svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M21 6.5l1.9 3.4h-3.8L21 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-        <blockquote>Mieliśmy przyjemność współpracować z Moniką podczas naszego ślubu oraz wesela i już świeżo po imprezie wiemy, że był to strzał w dziesiątkę.</blockquote>
-        <figcaption><b>Klaudia N.</b><span>Ślub i wesele</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Już od pierwszych chwil dało się poczuć, że kocha to, co robi. Atmosfera podczas zdjęć była swobodna i naturalna, a każda z nas czuła się pięknie i wyjątkowo.</blockquote>
-        <figcaption><b>Wiktoria K.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Sesja zdjęciowa"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="8.5" width="26" height="18.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 8.5l2-3.5h6l2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Zdjęcia przerosły nasze najśmielsze oczekiwania, każde ujęcie jest niesamowite. Jeśli szukacie kogoś, kto potrafi uchwycić emocje, to trafiliście idealnie.</blockquote>
-        <figcaption><b>Marta F.</b><span>Sesja zdjęciowa</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Chrzest święty"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5v11M11 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28.5c4.4 0 8-3.3 8-7.4 0-3.4-3.6-8-8-11.6-4.4 3.6-8 8.2-8 11.6 0 4.1 3.6 7.4 8 7.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Podczas całej uroczystości nie tylko robiła zdjęcia, ale też służyła pomocą, co mile mnie zaskoczyło. Zdjęcia otrzymałam po dwóch dniach.</blockquote>
-        <figcaption><b>Patrycja M.</b><span>Chrzest święty</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Sesja, która była prezentem na moim wieczorze panieńskim, wyszła obłędnie. Cudowna pamiątka i luźna atmosfera — na pewno jeszcze skorzystam.</blockquote>
-        <figcaption><b>Sylwia B.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Ślub i wesele"><svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M21 6.5l1.9 3.4h-3.8L21 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-        <blockquote>Świetna fotograf oraz osoba, spełniła wszystkie nasze prośby odnośnie zdjęć podczas naszego wesela. Jakość zdjęć jest przepiękna, potrafi uchwycić to, co najważniejsze.</blockquote>
-        <figcaption><b>Gabriela O.</b><span>Ślub i wesele</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Zdjęcia zachwycają piękną kolorystyką i idealnie dobranym światłem. Ogromny plus za błyskawiczną realizację — już po dwóch dniach miałyśmy komplet zdjęć z wieczoru panieńskiego.</blockquote>
-        <figcaption><b>Justyna K.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Chrzest święty"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5v11M11 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28.5c4.4 0 8-3.3 8-7.4 0-3.4-3.6-8-8-11.6-4.4 3.6-8 8.2-8 11.6 0 4.1 3.6 7.4 8 7.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Dostarczyła nam niezapomniane i piękne zdjęcia z chrztu naszego dziecka. Polecam każdemu, kto szuka wyjątkowych i profesjonalnych zdjęć z ważnych wydarzeń w życiu.</blockquote>
-        <figcaption><b>Mateusz C.</b><span>Chrzest święty</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Monika cudownie uchwyciła chwile na white ladies party. Była, ale tak jakby jej nie było — nasze wzruszenia, uśmiechy, zabawę.</blockquote>
-        <figcaption><b>Anna S.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Sesja zdjęciowa"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="8.5" width="26" height="18.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 8.5l2-3.5h6l2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Sesja przebiegła w miłej, swobodnej atmosferze, a jednocześnie bardzo profesjonalnie. Zdjęcia są pełne emocji, pięknie uchwycone i dopracowane w każdym detalu.</blockquote>
-        <figcaption><b>Patrycja R.</b><span>Sesja zdjęciowa</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Ślub i wesele"><svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="19" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M21 6.5l1.9 3.4h-3.8L21 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-        <blockquote>Mieliśmy przyjemność współpracować z Moniką podczas naszego ślubu oraz wesela i już świeżo po imprezie wiemy, że był to strzał w dziesiątkę.</blockquote>
-        <figcaption><b>Klaudia N.</b><span>Ślub i wesele</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Już od pierwszych chwil dało się poczuć, że kocha to, co robi. Atmosfera podczas zdjęć była swobodna i naturalna, a każda z nas czuła się pięknie i wyjątkowo.</blockquote>
-        <figcaption><b>Wiktoria K.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Sesja zdjęciowa"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="8.5" width="26" height="18.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 8.5l2-3.5h6l2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Zdjęcia przerosły nasze najśmielsze oczekiwania, każde ujęcie jest niesamowite. Jeśli szukacie kogoś, kto potrafi uchwycić emocje, to trafiliście idealnie.</blockquote>
-        <figcaption><b>Marta F.</b><span>Sesja zdjęciowa</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Chrzest święty"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5v11M11 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28.5c4.4 0 8-3.3 8-7.4 0-3.4-3.6-8-8-11.6-4.4 3.6-8 8.2-8 11.6 0 4.1 3.6 7.4 8 7.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <blockquote>Podczas całej uroczystości nie tylko robiła zdjęcia, ale też służyła pomocą, co mile mnie zaskoczyło. Zdjęcia otrzymałam po dwóch dniach.</blockquote>
-        <figcaption><b>Patrycja M.</b><span>Chrzest święty</span></figcaption>
-      </figure>
-      <figure class="op">
-        <div class="op-ikona" title="Wieczór panieński"><svg viewBox="0 0 32 32" fill="none"><path d="M8 4h16l-6.4 9.5V25h4.4M8 4l6.4 9.5V25H9.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 27.5h12.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24.5 7.5c1.6 0 2.9 1.3 2.9 2.9 0 2-2.9 4.1-2.9 4.1s-2.9-2.1-2.9-4.1c0-1.6 1.3-2.9 2.9-2.9z" stroke="currentColor" stroke-width="1.2"/></svg></div>
-        <blockquote>Sesja, która była prezentem na moim wieczorze panieńskim, wyszła obłędnie. Cudowna pamiątka i luźna atmosfera — na pewno jeszcze skorzystam.</blockquote>
-        <figcaption><b>Sylwia B.</b><span>Wieczór panieński</span></figcaption>
-      </figure>
-      </div>
-    </div>
-    <button class="op-strzalka dalej" aria-label="Następna opinia">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-</section>
-
-
-<!-- INSTAGRAM -->
-<section class="ig-sec">
-  <div class="wrap rv">
-    <h2>Zaobserwuj mnie</h2>
-    <a href="{IG}" target="_blank" rel="noopener" class="ig-handle">@stopmoments.foto</a>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════════
-       FEED INSTAGRAMA — BEHOLD.SO
-       Wklej adres feedu w pliku assets/app.js (szukaj: TWOJ_ID_FEEDU).
-       Zdjęcia poniżej to wersja zapasowa, widoczna do czasu podpięcia.
-       ══════════════════════════════════════════════════════════════ -->
-  <div class="ig-strip" id="igStrip">
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-1.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-2.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-3.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-4.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-5.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-6.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-7.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-    <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener"><img src="img/instagram/ig-8.jpg" alt="Instagram StopMoments" loading="lazy"></a>
-  </div>
-</section>
-
-
-<section class="druga-marka">
-  <div class="dm-in">
-    <div class="dm-foto"><img src="img/druga-marka/biznes.jpg" alt="Sesja wizerunkowa — Monika Adamczyk Fotografia" loading="lazy"></div>
-    <div class="dm-txt">
-      <div class="dm-nad">Druga strona mojej pracy</div>
-      <h3>Fotografia <em>biznesowa i wizerunkowa</em></h3>
-      <p>Poza uroczystościami rodzinnymi fotografuję marki osobiste, zespoły, konferencje i wydarzenia firmowe. Jeśli szukacie zdjęć na stronę, LinkedIn albo do materiałów firmowych — zapraszam na drugą stronę mojej działalności.</p>
-      <a href="/" class="dm-link">Monika Adamczyk Fotografia →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="narrow rv" style="text-align:center;margin-bottom:52px">
-      <div class="label">Dobrze wiedzieć</div>
-      <h2>Najczęściej zadawane <em>pytania</em></h2>
-      <p class="lead">Zebrałam tu wszystko, o czym pytacie mnie najczęściej przed sesją. Jeśli czegoś zabrakło — po prostu napiszcie.</p>
-    </div>
-
-    <div class="faq-list rv">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-1">
-          <span>Z jakim wyprzedzeniem rezerwować termin?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-1" role="region">
-          <div class="faq-a-in"><p>Najlepiej jak najwcześniej — zwłaszcza w sezonie ślubnym i przy sesjach noworodkowych, które warto umówić jeszcze w ciąży. Termin jest pewny dopiero po wpłacie zadatku, więc im szybciej się zdecydujecie, tym większa szansa, że dany dzień będzie jeszcze wolny.</p></div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-2">
-          <span>Jak wygląda rezerwacja terminu?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-2" role="region">
-          <div class="faq-a-in"><p>Piszecie do mnie z datą i rodzajem sesji, ustalamy szczegóły, a termin rezerwuję po wpłacie zadatku. Dopiero wtedy dzień jest zablokowany tylko dla Was.</p></div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-3">
-          <span>Kiedy i jak otrzymam zdjęcia?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-3" role="region">
-          <div class="faq-a-in"><p>Pierwsze podglądy widzicie zwykle jeszcze tego samego dnia. Całość trafia do prywatnej galerii online zabezpieczonej kodem PIN — link i kod możecie wysłać rodzinie i gościom, a każdy pobiera swoje zdjęcia sam, w pełnej rozdzielczości, bez zakładania konta.</p></div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-4">
-          <span>Czy dojeżdżasz poza Ropczyce?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-4" role="region">
-          <div class="faq-a-in"><p>Tak. Dojazd do 30&nbsp;km od Ropczyc mam wliczony w cenę, powyżej — 1,5&nbsp;zł/km. Miejsce sesji ustalamy wcześniej, dopasowane do Waszych planów.</p></div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-5">
-          <span>Czy sesja może odbyć się w studio?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-5" role="region">
-          <div class="faq-a-in"><p>Tak, sesje rodzinne, narzeczeńskie i noworodkowe mogą się odbyć w wynajętym studiu — jego koszt, około 130&nbsp;zł/h, doliczam do ceny sesji. Pomogę wybrać miejsce dopasowane do tego, co macie w głowie.</p></div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false" aria-controls="faq-6">
-          <span>Nie umiemy pozować. Jak to wygląda na sesji?</span>
-          <span class="faq-ikona" aria-hidden="true"></span>
-        </button>
-        <div class="faq-a" id="faq-6" role="region">
-          <div class="faq-a-in"><p>U mnie nie chodzi o pozowanie. Nie ustawiam Was godzinami ani nie każę się uśmiechać na komendę — obserwuję, rozmawiamy, a zdjęcia robię wtedy, kiedy dzieje się coś naprawdę. Po chwili zapominacie, że w ogóle tam jestem.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-stopka rv">
-      <p>Nie znaleźliście odpowiedzi na swoje pytanie?</p>
-      <a href="https://wa.me/48791601963" class="btn btn-o" target="_blank" rel="noopener">Napiszcie do mnie</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <div class="wrap narrow rv">
-    <div class="label" style="color:var(--blue-light)">Kontakt</div>
-    <h2>Sprawdźmy, czy mam <em>Wasz termin</em></h2>
-    <p>Napiszcie, kiedy i co się u Was dzieje — odpowiem najpóźniej następnego dnia. Jeśli nie będę mogła być tego dnia z Wami, powiem od razu i polecę kogoś, komu ufam.</p>
-    <a href="https://wa.me/48791601963" class="btn btn-p" target="_blank" rel="noopener">Napisz na WhatsApp</a>
-    <a href="tel:+48791601963" class="btn btn-o">791 601 963</a>
-    <div style="margin-top:34px"><a href="cennik-stopmoments-2026.pdf" download style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-light);border-bottom:1px solid rgba(147,168,188,.4);padding-bottom:3px">Pobierz pełny cennik w PDF</a></div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="f-grid">
-      <div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--navy);margin-bottom:10px">StopMoments</div>
-        <p style="max-width:36ch;line-height:1.8">Fotografia rodzinna i okolicznościowa. Ropczyce, Sędziszów Małopolski, Dębica i okolice.</p>
-      </div>
-      <div>
-        <h5>Oferta</h5>
-        <a href="chrzty.html">Chrzty</a>
-        <a href="sluby.html">Śluby i wesela</a>
-        <a href="sesje-rodzinne.html">Sesje rodzinne</a>
-        <a href="sesje-noworodkowe.html">Sesje noworodkowe</a>
-        <a href="sesje-narzeczenskie.html">Sesje narzeczeńskie</a>
-        <a href="sesje-kobiece.html">Sesje kobiece i ciążowe</a>
-        <a href="sesje-swiateczne.html">Sesje świąteczne</a>
-        <a href="wieczor-panienski.html">Wieczór panieński</a>
-        <a href="komunie.html">Reportaże komunijne</a>
-        <a href="przyjecia.html">Przyjęcia i studniówki</a>
-        <a href="blog.html">Blog</a>
-      </div>
-      <div>
-        <h5>Kontakt</h5>
-        <a href="tel:+48791601963">791 601 963</a>
-        <a href="mailto:kontakt@monikaadamczyk.pl">kontakt@monikaadamczyk.pl</a>
-        <a href="https://instagram.com/stopmoments.foto" target="_blank" rel="noopener">@stopmoments.foto</a>
-        <a href="#faq">FAQ</a>
-        <a href="/">Fotografia biznesowa →</a>
-      </div>
-    </div>
-    <div class="f-bot">
-      <span>© 2026 Monika Adamczyk Fotografia</span>
-      <span>monikaadamczyk.pl</span>
-    </div>
-  </div>
-</footer>
-
-<div class="lb" id="lb">
-  <span class="lb-x" onclick="closeLb()">×</span>
-  <span class="lb-nav lb-prev" onclick="navLb(-1)">‹</span>
-  <img id="lbImg" src="" alt="">
-  <span class="lb-nav lb-next" onclick="navLb(1)">›</span>
+<div class="brandbar">
+  <div class="name">Monika Adamczyk<small>FOTOGRAFIA</small></div>
 </div>
 
-<script src="assets/app.js"></script>
+<div class="picker">
+  <a class="panel" href="biznes.html" aria-label="Fotografia biznesowa">
+    <img src="img/druga-marka/biznes.jpg" alt="Sesja zespołowa biznesowa">
+    <div class="panel-content">
+      <span class="eyebrow">Marki i firmy</span>
+      <h2>Fotografia biznesowa</h2>
+      <p>Sesje wizerunkowe, zespołowe i reportaże z eventów dla firm i marek osobistych.</p>
+      <span class="cta">Zobacz ofertę
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </span>
+    </div>
+  </a>
+  <div class="divider"></div>
+  <a class="panel" href="rodzinne.html" aria-label="Sesje rodzinne i okolicznościowe — StopMoments">
+    <img src="img/hero/hero-chrzest.jpg" alt="Chrzest — sesja okolicznościowa StopMoments">
+    <div class="panel-content">
+      <span class="eyebrow">StopMoments</span>
+      <h2>Sesje rodzinne i&nbsp;okolicznościowe</h2>
+      <p>Chrzciny, śluby, sesje rodzinne, narzeczeńskie, noworodkowe i więcej.</p>
+      <span class="cta">Zobacz ofertę
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </span>
+    </div>
+  </a>
+</div>
+
 </body>
 </html>
