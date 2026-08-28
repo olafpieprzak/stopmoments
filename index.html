@@ -58,8 +58,8 @@
   .hero-copy .script{display:block;font-size:2.6rem;margin-top:2px}
   .hero-copy p.lead{margin:22px 0 32px;color:var(--ink-soft);max-width:44ch;font-size:1rem}
   .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-  .hero-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/3.1}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 34%}
+  .hero-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:2/3;max-width:420px;margin-left:auto}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 
   /* WYBIERZ */
   .choose-head{text-align:center;margin-bottom:44px}
@@ -68,7 +68,7 @@
   .choose-card{position:relative;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
   .choose-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .choose-card.biz::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg, rgba(23,36,51,.94) 0%, rgba(23,36,51,.88) 42%, rgba(23,36,51,.15) 100%);z-index:1}
-  .choose-card.you::before{content:'';position:absolute;inset:0;background:linear-gradient(260deg, rgba(251,248,244,.96) 0%, rgba(251,248,244,.9) 42%, rgba(251,248,244,.1) 100%);z-index:1}
+  .choose-card.you::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg, rgba(251,248,244,.96) 0%, rgba(251,248,244,.9) 42%, rgba(251,248,244,.1) 100%);z-index:1}
   .choose-inner{position:relative;z-index:2;padding:48px;max-width:420px}
   .choose-card.biz{color:#fff}
   .choose-card.you{color:var(--navy)}
@@ -172,7 +172,6 @@
     <div class="hero-copy">
       <span class="eyebrow">Fotografia, która pracuje dla Ciebie</span>
       <h1 style="margin-top:14px">Twoja historia.<br><span class="accent">Moje światło.</span></h1>
-      <span class="script">Mijają szybciej, niż myślisz.</span>
       <p class="lead">Tworzę zdjęcia, które budują wizerunek Twojej marki i zatrzymują najważniejsze momenty w życiu.</p>
       <div class="hero-cta">
         <a class="btn btn-dark" href="biznes.html">Jestem przedsiębiorcą
@@ -214,7 +213,7 @@
       </a>
       <a class="choose-card you" href="rodzinne.html">
         <img src="img/home/card-chrzest-2.jpg" alt="Sesja z chrztu świętego — dziecko w białej sukience">
-        <div class="choose-inner" style="margin-left:auto;text-align:left">
+        <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.3 5 5.7 5c2 0 3.5 1.1 4.3 2.6C10.8 6.1 12.3 5 14.3 5c3.4 0 5.2 3.4 3.7 6.8C15.5 16.4 12 21 12 21z"/></svg></div>
           <h3>Dla ciebie</h3>
           <p>Naturalne zdjęcia pełne emocji, które zatrzymują to, co w życiu najważniejsze.</p>
@@ -222,7 +221,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sesje rodzinne</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Reportaże</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Uroczystości</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Prawdziwe chwile</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Śluby i wesela</li>
           </ul>
           <span class="btn btn-outline">Zobacz ofertę
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -233,14 +232,17 @@
   </div>
 </section>
 
-<section id="portfolio">
+<section id="portfolio" style="padding-top:40px">
   <div class="wrap">
     <div class="pf-head">
       <div>
         <span class="eyebrow">Realne historie, prawdziwe emocje</span>
         <h2>Zobacz moje kadry</h2>
       </div>
-      <a class="btn btn-outline" href="biznes.html">Zobacz portfolio</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-outline" href="biznes.html">Portfolio biznesowe</a>
+        <a class="btn btn-outline" href="rodzinne.html">Portfolio StopMoments</a>
+      </div>
     </div>
     <div class="pf-grid">
       <a href="biznes.html"><img src="img/home/pf-1-laptop.jpg" alt="Portret biznesowy przy laptopie"></a>
@@ -261,9 +263,9 @@
     <div class="about-copy">
       <span class="eyebrow">O mnie</span>
       <h2>Cześć, jestem Monika!</h2>
-      <span class="script">Fotografka z pasją do ludzi i historii</span>
+      <span class="script" style="color:var(--blue)">Fotografka z pasją do ludzi i historii</span>
       <p>Łączę doświadczenie fotograficzne z uważnością na ludzi. Dbam o atmosferę, w której możesz być sobą — w biznesie i w życiu. Tworzę zdjęcia estetyczne, ale przede wszystkim autentyczne.</p>
-      <a class="btn btn-dark" href="biznes.html#kontakt">Poznaj mnie lepiej</a>
+      <a class="btn btn-dark" href="#opinie">Poznaj mnie lepiej</a>
     </div>
     <div class="about-features">
       <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>13 lat doświadczenia</div>
