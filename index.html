@@ -55,9 +55,13 @@
   @media(max-width:900px){.nav-links a:not(.btn):not(.ig-link){display:none}}
 
   /* HERO */
-  .hero{background:#FAF9F7;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:44% 56%;height:640px}
-  .hero-copy{display:flex;flex-direction:column;justify-content:center;gap:16px;padding:0 40px 0 max(28px,calc((100vw - 1240px)/2))}
+  .hero{position:relative;height:640px;overflow:hidden;background:#FAF9F7}
+  .hero-bg{position:absolute;top:0;right:0;bottom:0;width:60%;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+  .hero-bg::before{content:'';position:absolute;top:0;left:0;bottom:0;width:38%;z-index:1;background:linear-gradient(90deg, #FAF9F7 0%, rgba(250,249,247,.85) 40%, rgba(250,249,247,0) 100%)}
+  .hero-fade{display:none}
+  .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;height:100%;padding:0 30px 0 max(28px,calc((100vw - 1240px)/2))}
+  .hero-copy h1{max-width:420px}
   .hero-eyebrow-text{font-size:.76rem;font-weight:600;letter-spacing:.18em;color:#8FA3B8;text-transform:uppercase}
   .hero-copy h1{font-size:clamp(2.6rem,3.4vw,3.7rem);color:#2F3640;margin:0;line-height:1.12}
   .hero-copy p.lead{margin:2px 0 6px;color:#5B6570;max-width:40ch;font-size:1.04rem;line-height:1.65}
@@ -67,8 +71,6 @@
   .hero-cta .btn-hero-dark:hover{background:#1e252c;transform:translateY(-1px)}
   .hero-cta .btn-hero-blue{background:#8FA3B8;color:#fff}
   .hero-cta .btn-hero-blue:hover{background:#7c93aa}
-  .hero-photo{position:relative;width:100%;height:100%;overflow:hidden}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;display:block}
 
   /* WYBIERZ */
   .choose-head{text-align:center;margin-bottom:44px}
@@ -151,12 +153,13 @@
 
   @media(max-width:900px){
     section{padding:64px 0}
-    .hero-grid{grid-template-columns:1fr;min-height:auto}
-    .hero-copy{padding:36px 24px 28px}
+    .hero{height:auto;display:flex;flex-direction:column}
+    .hero-bg{position:relative;order:2;height:60vw;max-height:420px}
+    .hero-fade{display:none}
+    .hero-copy{order:1;position:relative;height:auto;max-width:none;padding:36px 24px 28px}
     .hero-cta{flex-direction:column;align-items:stretch}
     .hero-cta .btn{text-align:center}
-    .hero-photo{width:100%;height:auto;aspect-ratio:4/5}
-    .hero-photo img{object-position:50% 25%}
+    .hero-bg img{object-position:50% 25%}
     .choose-grid{grid-template-columns:1fr}
     .choose-card{min-height:420px}
     .pf-grid{grid-template-columns:repeat(3,1fr)}
@@ -199,21 +202,20 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="hero-eyebrow-text">Fotografia biznesowa i rodzinna</span>
-      <h1>Twoja historia.<br>Moje światło.</h1>
-      <p class="lead">Pomagam przedsiębiorcom budować wizerunek i markom osobistym. Tworzę również naturalne reportaże rodzinne pełne emocji.</p>
-      <div class="hero-cta">
-        <a class="btn btn-hero-dark" href="biznes.html">Jestem przedsiębiorcą</a>
-        <a class="btn btn-hero-blue" href="rodzinne.html">Szukam sesji prywatnej</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <picture>
-        <source media="(max-width:900px)" srcset="img/home/hero-monika-mobile.jpg">
-        <img src="img/home/hero-monika-wide.jpg" alt="Monika Adamczyk przy pracy — biurko, laptop i aparat">
-      </picture>
+  <div class="hero-bg">
+    <picture>
+      <source media="(max-width:900px)" srcset="img/home/hero-monika-mobile.jpg">
+      <img src="img/home/hero-monika-wide.jpg" alt="Monika Adamczyk przy pracy — biurko, laptop i aparat">
+    </picture>
+  </div>
+  <div class="hero-fade"></div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow-text">Fotografia biznesowa i rodzinna</span>
+    <h1>Twoja historia.<br>Moje światło.</h1>
+    <p class="lead">Pomagam przedsiębiorcom budować wizerunek i markom osobistym. Tworzę również naturalne reportaże rodzinne pełne emocji.</p>
+    <div class="hero-cta">
+      <a class="btn btn-hero-dark" href="biznes.html">Jestem przedsiębiorcą</a>
+      <a class="btn btn-hero-blue" href="rodzinne.html">Szukam sesji prywatnej</a>
     </div>
   </div>
 </header>
