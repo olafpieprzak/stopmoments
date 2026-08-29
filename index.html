@@ -8,7 +8,7 @@
 <meta name="description" content="Fotografia, która buduje markę i zatrzymuje najważniejsze chwile. Sesje biznesowe, wizerunkowe i eventowe dla firm oraz sesje rodzinne, śluby i chrzciny (StopMoments). Ropczyce, Podkarpacie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1F3247; --navy-deep:#172433;
@@ -24,7 +24,7 @@
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.15}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.15}
   .script{font-family:'Caveat',cursive;color:var(--rust);font-weight:600}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:2px;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:.25s;white-space:nowrap}
@@ -32,6 +32,8 @@
   .btn-dark{background:var(--navy);color:#fff}
   .btn-dark:hover{background:var(--navy-deep)}
   .btn-outline{border:1px solid var(--ink);color:var(--ink)}
+  .btn-fill-blue{background:var(--blue);color:#fff}
+  .btn-fill-blue:hover{background:#5f7488}
   .btn-outline:hover{background:var(--ink);color:#fff}
   .btn-light-outline{border:1px solid rgba(255,255,255,.55);color:#fff}
   .btn-light-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
@@ -42,7 +44,7 @@
   .nav-in{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
   .brand{display:flex;align-items:center;gap:12px}
   .brand-logo{height:74px;width:auto;display:block}
-  .brand .mono{width:44px;height:44px;border:1.5px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--navy);flex-shrink:0}
+  .brand .mono{width:44px;height:44px;border:1.5px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy);flex-shrink:0}
   .brand .txt{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:700;letter-spacing:.06em;color:var(--navy);line-height:1.3}
   .brand .txt small{display:block;font-size:.58rem;font-weight:500;letter-spacing:.24em;color:var(--ink-soft)}
   .nav-links{display:flex;align-items:center;gap:34px}
@@ -59,7 +61,7 @@
   .hero-copy .script{display:block;font-size:2.6rem;margin-top:2px}
   .hero-copy p.lead{margin:22px 0 32px;color:var(--ink-soft);max-width:44ch;font-size:1rem}
   .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-  .hero-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:2/3;max-width:420px;margin-left:auto}
+  .hero-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:1400/1806;max-width:420px;margin-left:auto}
   .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 
   /* WYBIERZ */
@@ -81,17 +83,19 @@
   .choose-card p{font-size:.92rem;max-width:36ch;margin-bottom:18px}
   .choose-card.biz p{color:rgba(255,255,255,.75)}
   .choose-card.you p{color:var(--ink-soft)}
-  .choose-list{list-style:none;margin-bottom:26px;display:flex;flex-direction:column;gap:9px}
-  .choose-list li{display:flex;align-items:center;gap:10px;font-size:.86rem}
-  .choose-list svg{width:16px;height:16px;flex-shrink:0}
-  .choose-card.biz .choose-list svg{color:var(--blue-pale)}
-  .choose-card.you .choose-list svg{color:var(--blue)}
+  .choose-plain{font-size:.94rem;line-height:1.9;max-width:30ch;margin-bottom:8px}
+  .choose-arrow{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid currentColor;margin-top:10px;transition:.25s}
+  .choose-arrow svg{width:18px;height:18px}
+  .choose-card:hover .choose-arrow{background:currentColor}
+  .choose-card.biz:hover .choose-arrow svg{color:var(--navy)}
+  .choose-card.you:hover .choose-arrow svg{color:var(--cream)}
 
   /* PORTFOLIO STRIP */
   .pf-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;gap:20px;flex-wrap:wrap}
   .pf-head .eyebrow{display:block;margin-bottom:8px}
   .pf-head h2{font-size:2.1rem;color:var(--navy)}
   .pf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .pf-grid-4{grid-template-columns:repeat(4,1fr)}
   .pf-grid a{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:3px;display:block}
   .pf-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
   .pf-grid a:hover img{transform:scale(1.06)}
@@ -112,15 +116,23 @@
   /* TESTIMONIALS */
   .testi-head{text-align:center;margin-bottom:44px}
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .testi-split{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .testi-col-h{font-size:1.2rem;color:var(--navy);margin-bottom:18px;text-align:center}
+  .testi-col .testi-card{margin-bottom:20px}
+  .testi-col .testi-card:last-child{margin-bottom:0}
   .testi-card{background:#fff;padding:32px 28px;border-radius:4px;box-shadow:0 20px 40px -28px rgba(31,50,71,.25)}
-  .testi-card .q{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--blue-pale);line-height:1;margin-bottom:6px}
+  .testi-card .q{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--blue-pale);line-height:1;margin-bottom:6px}
   .testi-card blockquote{font-size:.9rem;color:var(--ink-soft);margin-bottom:18px;line-height:1.65}
   .testi-card b{display:block;font-size:.86rem;color:var(--navy)}
   .testi-card span{display:block;font-size:.72rem;color:var(--ink-soft);margin-top:2px}
 
   /* FOOTER */
-  footer{background:var(--navy);color:rgba(255,255,255,.85);padding:56px 0 26px}
-  .foot-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:16px}
+  footer{background:var(--navy);color:rgba(255,255,255,.85);padding:64px 0 26px}
+  .foot-cols{display:grid;grid-template-columns:1.4fr repeat(5,1fr);gap:24px;margin-bottom:44px}
+  .foot-col h5{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+  .foot-col{display:flex;flex-direction:column;gap:10px;font-size:.84rem}
+  .foot-col a{color:rgba(255,255,255,.7)}
+  .foot-col a:hover{color:#fff}
   .foot-top a{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600}
   .foot-top svg{width:18px;height:18px}
   .foot-script{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--blue-pale)}
@@ -134,14 +146,18 @@
   @media(max-width:900px){
     section{padding:64px 0}
     .hero-grid{grid-template-columns:1fr}
-    .hero-photo{order:-1}
+    .hero-photo{max-width:280px;margin:24px auto 0}
     .choose-grid{grid-template-columns:1fr}
     .choose-card{min-height:420px}
     .pf-grid{grid-template-columns:repeat(3,1fr)}
+    .pf-grid-4{grid-template-columns:repeat(2,1fr)}
     .about-grid{grid-template-columns:1fr;gap:32px}
     .about-photo{max-width:320px;margin:0 auto}
     .testi-grid{grid-template-columns:1fr}
+    .testi-split{grid-template-columns:1fr;gap:32px}
     .foot-grid{grid-template-columns:repeat(3,1fr)}
+    .foot-cols{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+    .foot-brand{grid-column:1/-1;margin-bottom:8px}
     .pf-head{flex-direction:column;align-items:flex-start}
   }
 </style>
@@ -175,16 +191,12 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Fotografia, która pracuje dla Ciebie</span>
+      <span class="eyebrow">Fotografia biznesowa i rodzinna</span>
       <h1 style="margin-top:14px">Twoja historia.<br><span class="accent">Moje światło.</span></h1>
-      <p class="lead">Tworzę zdjęcia, które budują wizerunek Twojej marki i zatrzymują najważniejsze momenty w życiu.</p>
+      <p class="lead">Pomagam przedsiębiorcom budować wizerunek i markom osobistym. Tworzę również naturalne reportaże rodzinne pełne emocji.</p>
       <div class="hero-cta">
-        <a class="btn btn-dark" href="biznes.html">Jestem przedsiębiorcą
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-        <a class="btn btn-outline" href="rodzinne.html">Szukam sesji prywatnej
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
+        <a class="btn btn-dark" href="biznes.html">Jestem przedsiębiorcą</a>
+        <a class="btn btn-fill-blue" href="rodzinne.html">Szukam sesji prywatnej</a>
       </div>
     </div>
     <div class="hero-photo">
@@ -204,16 +216,8 @@
         <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
           <h3>Dla biznesu</h3>
-          <p>Profesjonalne zdjęcia, które wspierają Twój wizerunek, budują zaufanie i przyciągają klientów.</p>
-          <ul class="choose-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sesje wizerunkowe</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Zdjęcia zespołów</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Fotografia eventowa</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Materiały do marketingu</li>
-          </ul>
-          <span class="btn btn-light-outline">Zobacz ofertę
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </span>
+          <p class="choose-plain">Sesje wizerunkowe<br>Eventy i konferencje<br>Zdjęcia zespołów</p>
+          <span class="choose-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
         </div>
       </a>
       <a class="choose-card you" href="rodzinne.html">
@@ -221,44 +225,32 @@
         <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.3 5 5.7 5c2 0 3.5 1.1 4.3 2.6C10.8 6.1 12.3 5 14.3 5c3.4 0 5.2 3.4 3.7 6.8C15.5 16.4 12 21 12 21z"/></svg></div>
           <h3>Dla ciebie</h3>
-          <p>Naturalne zdjęcia pełne emocji, które zatrzymują to, co w życiu najważniejsze.</p>
-          <ul class="choose-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sesje rodzinne</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Reportaże</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Uroczystości</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Śluby i wesela</li>
-          </ul>
-          <span class="btn btn-outline">Zobacz ofertę
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </span>
+          <p class="choose-plain">Sesje rodzinne<br>Reportaże z życia<br>Chwile, które zostają</p>
+          <span class="choose-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
         </div>
       </a>
     </div>
   </div>
 </section>
 
+
 <section id="portfolio" style="padding-top:40px">
-  <div class="wrap">
-    <div class="pf-head">
-      <div>
-        <span class="eyebrow">Realne historie, prawdziwe emocje</span>
-        <h2>Zobacz moje kadry</h2>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-outline" href="biznes.html">Portfolio biznesowe</a>
-        <a class="btn btn-outline" href="rodzinne.html">Portfolio StopMoments</a>
-      </div>
-    </div>
-    <div class="pf-grid">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">Realne historie, prawdziwe emocje</span>
+    <h2 style="margin:10px 0 36px">Zobacz moje kadry</h2>
+    <div class="pf-grid pf-grid-4">
       <a href="biznes.html"><img src="img/home/pf-1-laptop.jpg" alt="Portret biznesowy przy laptopie"></a>
-      <a href="biznes.html"><img src="img/home/pf-2-hala-v2.jpg" alt="Hala konferencyjna — widok ogólny"></a>
-      <a href="biznes.html"><img src="img/home/pf-3-portret-v2.jpg" alt="Portret biznesowy mężczyzny"></a>
       <a href="rodzinne.html"><img src="img/home/pf-4-rodzina.jpg" alt="Sesja rodzinna w plenerze"></a>
-      <a href="biznes.html"><img src="img/home/pf-5-scena.jpg" alt="Prelegent na scenie"></a>
-      <a href="rodzinne.html"><img src="img/home/pf-6-slub-v2.jpg" alt="Para na tle zachodzącego słońca"></a>
+      <a href="biznes.html"><img src="img/home/pf-5-scena.jpg" alt="Konferencja — publiczność na sali"></a>
+      <a href="biznes.html"><img src="img/home/pf-2-hala-v2.jpg" alt="Nowoczesne wnętrze biurowe"></a>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:36px">
+      <a class="btn btn-dark" href="biznes.html">Zobacz ofertę biznesową</a>
+      <a class="btn btn-fill-blue" href="rodzinne.html">Zobacz sesje rodzinne</a>
     </div>
   </div>
 </section>
+
 
 <section class="about" id="o-mnie">
   <div class="wrap about-grid">
@@ -287,25 +279,37 @@
     <div class="testi-head">
       <span class="eyebrow">Co mówią moi klienci</span>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="q">"</div>
-        <blockquote>Miałam przyjemność współpracy podczas eventu biznesowego. To otwarta, pełna pasji profesjonalistka w swoim fachu.</blockquote>
-        <b>Amanda</b><span>Google, sesja eventowa</span>
+    <div class="testi-split">
+      <div class="testi-col">
+        <h3 class="testi-col-h">Opinie biznesowe</h3>
+        <div class="testi-card">
+          <div class="q">"</div>
+          <blockquote>Miałam przyjemność współpracy podczas eventu biznesowego. To otwarta, pełna pasji profesjonalistka w swoim fachu.</blockquote>
+          <b>Amanda</b><span>Google, sesja eventowa</span>
+        </div>
+        <div class="testi-card">
+          <div class="q">"</div>
+          <blockquote>Bardzo polecam współpracę z Moniką przy sesjach biznesowych i wizerunkowych.</blockquote>
+          <b>Arek Wiczyński</b><span>Google, sesja wizerunkowa</span>
+        </div>
       </div>
-      <div class="testi-card">
-        <div class="q">"</div>
-        <blockquote>Bardzo polecam współpracę z Moniką przy sesjach biznesowych, wizerunkowych oraz materiałach video typu „rolki".</blockquote>
-        <b>Arek Wiczyński</b><span>Google, sesja wizerunkowa</span>
-      </div>
-      <div class="testi-card">
-        <div class="q">"</div>
-        <blockquote>Świetna fotograf oraz osoba, spełniła wszystkie nasze prośby odnośnie zdjęć podczas naszego wesela. Jakość zdjęć jest przepiękna.</blockquote>
-        <b>Gabriela O.</b><span>Ślub i wesele</span>
+      <div class="testi-col">
+        <h3 class="testi-col-h">Opinie prywatne</h3>
+        <div class="testi-card">
+          <div class="q">"</div>
+          <blockquote>Świetna fotograf oraz osoba, spełniła wszystkie nasze prośby odnośnie zdjęć podczas naszego wesela. Jakość zdjęć jest przepiękna.</blockquote>
+          <b>Gabriela O.</b><span>Ślub i wesele</span>
+        </div>
+        <div class="testi-card">
+          <div class="q">"</div>
+          <blockquote>Dostarczyła nam niezapomniane i piękne zdjęcia z chrztu naszego dziecka. Polecam każdemu, kto szuka wyjątkowych zdjęć z ważnych wydarzeń.</blockquote>
+          <b>Mateusz C.</b><span>Chrzest święty</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <section id="kontakt" style="padding:90px 0;background:var(--cream-deep)">
   <div class="wrap" style="max-width:680px;text-align:center;margin:0 auto">
@@ -325,25 +329,38 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-top">
-      <div style="display:flex;gap:26px;flex-wrap:wrap">
-        <a href="https://www.instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          Biznes — @monika_adamczyk_fotografia
-        </a>
-        <a href="https://www.instagram.com/stopmoments.foto" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          StopMoments — @stopmoments.foto
-        </a>
+    <div class="foot-cols">
+      <div class="foot-col foot-brand">
+        <img src="img/logo-monika-adamczyk-dark.png" alt="Monika Adamczyk Fotografia" style="height:70px;width:auto;margin-bottom:14px">
       </div>
-      <span class="foot-script">Zapraszam! ♡</span>
-    </div>
-    <div class="foot-grid">
-      <a href="biznes.html"><img src="img/home/pf-1-laptop.jpg" alt=""></a>
-      <a href="biznes.html"><img src="img/home/about-monika.jpg" alt=""></a>
-      <a href="rodzinne.html"><img src="img/home/card-rodzina.jpg" alt=""></a>
-      <a href="biznes.html"><img src="img/home/pf-3-portret-v2.jpg" alt=""></a>
-      <a href="biznes.html"><img src="img/home/pf-2-hala-v2.jpg" alt=""></a>
+      <div class="foot-col">
+        <h5>Dla biznesu</h5>
+        <a href="biznes.html">Sesje wizerunkowe</a>
+        <a href="biznes.html">Eventy i konferencje</a>
+        <a href="biznes.html">Zdjęcia zespołów</a>
+      </div>
+      <div class="foot-col">
+        <h5>Dla ciebie</h5>
+        <a href="rodzinne.html">Sesje rodzinne</a>
+        <a href="rodzinne.html">Reportaże z życia</a>
+        <a href="rodzinne.html">Sesje kobiece</a>
+      </div>
+      <div class="foot-col">
+        <h5>O mnie</h5>
+        <a href="#o-mnie">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <a href="tel:+48791601963">+48 791 601 963</a>
+        <a href="mailto:kontakt@monikaadamczyk.pl">kontakt@monikaadamczyk.pl</a>
+        <span style="display:block;margin-top:4px;opacity:.7">Ropczyce, Podkarpacie</span>
+      </div>
+      <div class="foot-col">
+        <h5>Znajdź mnie</h5>
+        <a href="https://www.instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener">Instagram biznesowy</a>
+        <a href="https://www.instagram.com/stopmoments.foto" target="_blank" rel="noopener">Instagram prywatny</a>
+      </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Monika Adamczyk Fotografia</span>
@@ -354,6 +371,7 @@
     </div>
   </div>
 </footer>
+
 
 </body>
 </html>
