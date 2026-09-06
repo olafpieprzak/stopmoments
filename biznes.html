@@ -73,7 +73,7 @@
     height:min(82vh, calc(100vw / 1.7768));
     background-color:#FAF9F7;
     background-image:url('img/biznes/hero-biznes-wide.jpg');
-    background-size:88% auto;
+    background-size:cover;
     background-position:right center;
     background-repeat:no-repeat;
   }
@@ -108,7 +108,7 @@
   .hero-stats .stat .lbl{font-size:.62rem;letter-spacing:.04em;color:var(--ink-70);text-transform:uppercase}
 
   @media(max-width:900px){
-    .hero{aspect-ratio:auto;height:auto;min-height:640px;max-height:none;background-size:cover;background-position:78% center}
+    .hero{height:auto;min-height:600px;background-image:url('img/biznes/hero-biznes-mobile.jpg');background-size:cover;background-position:62% center}
     .hero::before{background:linear-gradient(180deg, rgba(250,249,247,0.97) 0%, rgba(250,249,247,0.94) 45%, rgba(250,249,247,0.6) 65%, rgba(250,249,247,0.15) 100%)}
     .hero-copy{padding:40px 24px 260px}
   }
