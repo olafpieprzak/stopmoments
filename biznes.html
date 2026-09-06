@@ -117,16 +117,18 @@
     .hero-copy p.lead{order:3}
     .hero-copy .hero-cta{order:4}
     .hero-mobile-photo{
-      display:block;order:5;width:100%;height:auto;
-      border-radius:14px;margin-top:8px;
+      display:block;order:5;width:calc(100% + 32px);max-width:calc(100% + 32px);height:auto;
+      margin-left:-16px;margin-right:-16px;
+      border-radius:14px;margin-top:2px;
       object-fit:cover;
     }
     .hero-copy .hero-stats{
       order:6;display:grid;grid-template-columns:repeat(3,1fr);
-      gap:18px;margin-top:20px;padding-top:24px;
+      gap:22px;margin-top:22px;padding-top:24px;
       border-top:1px solid rgba(47,54,64,.12);
     }
-    .hero-copy .hero-stats .stat{align-items:flex-start}
+    .hero-copy .hero-stats .stat{align-items:flex-start;gap:4px}
+    .hero-copy .hero-stats .stat .lbl{color:var(--ink-deep);opacity:.72;line-height:1.35}
   }
 
   /* stats strip */
