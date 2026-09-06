@@ -106,11 +106,27 @@
   .hero-stats .stat{display:flex;flex-direction:column;gap:2px}
   .hero-stats .stat .num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--ink-deep);line-height:1}
   .hero-stats .stat .lbl{font-size:.62rem;letter-spacing:.04em;color:var(--ink-70);text-transform:uppercase}
+  .hero-mobile-photo{display:none}
 
   @media(max-width:900px){
-    .hero{height:auto;min-height:600px;background-image:url('img/biznes/hero-biznes-mobile.jpg');background-size:cover;background-position:62% center}
-    .hero::before{background:linear-gradient(180deg, rgba(250,249,247,0.97) 0%, rgba(250,249,247,0.94) 45%, rgba(250,249,247,0.6) 65%, rgba(250,249,247,0.15) 100%)}
-    .hero-copy{padding:40px 24px 260px}
+    .hero{height:auto;min-height:auto;background-image:none;background-color:#FAF9F7}
+    .hero::before{display:none}
+    .hero-copy{display:flex;flex-direction:column;padding:40px 24px 48px;gap:16px}
+    .hero-copy .hero-eyebrow{order:1}
+    .hero-copy h1{order:2}
+    .hero-copy p.lead{order:3}
+    .hero-copy .hero-cta{order:4}
+    .hero-mobile-photo{
+      display:block;order:5;width:100%;height:auto;
+      border-radius:14px;margin-top:8px;
+      object-fit:cover;
+    }
+    .hero-copy .hero-stats{
+      order:6;display:grid;grid-template-columns:repeat(3,1fr);
+      gap:18px;margin-top:20px;padding-top:24px;
+      border-top:1px solid rgba(47,54,64,.12);
+    }
+    .hero-copy .hero-stats .stat{align-items:flex-start}
   }
 
   /* stats strip */
@@ -476,6 +492,7 @@
       <a class="btn btn-hero-solid" href="#kontakt">Umów rozmowę wstępną</a>
       <a class="btn btn-hero-outline" href="#oferta">Zobacz ofertę i cennik</a>
     </div>
+    <img class="hero-mobile-photo" src="img/biznes/hero-biznes-mobile.jpg" alt="Monika Adamczyk — fotografka z aparatem w studiu">
     <div class="hero-stats">
       <div class="stat"><span class="num">450+</span><span class="lbl">Zrealizowanych sesji</span></div>
       <div class="stat"><span class="num">13</span><span class="lbl">Lat doświadczenia</span></div>
