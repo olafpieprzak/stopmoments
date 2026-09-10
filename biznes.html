@@ -432,18 +432,36 @@
   .promise .eyebrow{color:var(--blue-soft);margin-bottom:18px;display:block}
 
   .wins{padding-top:70px}
+  /* ---- Instagram (feed z oficjalnego API Meta) ---- */
   .igfeed{background:var(--paper)}
-  .ig-head{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
-  .ig-head h2{margin:0}
-  .ig-follow{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:11px 22px;text-decoration:none;white-space:nowrap;transition:.25s}
-  .ig-follow:hover{background:var(--ink);color:var(--paper)}
-  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-  .ig-grid a{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;border-radius:6px;background:var(--sand)}
-  .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .ig-grid a:hover img{transform:scale(1.06)}
-  .ig-fallback{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:60px 20px;text-align:center;color:rgba(47,54,64,.55);font-size:.9rem}
-  @media(max-width:900px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:520px){.ig-grid{grid-template-columns:repeat(3,1fr);gap:6px}}
+  .igfeed .section-head{margin-bottom:clamp(40px,4.4vw,62px)}
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,20px)}
+  .ig-item{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:2px;
+    background:var(--sand)}
+  .ig-item img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;display:block;
+    transition:transform .6s var(--ease),opacity .35s var(--ease)}
+  .ig-item:hover img{transform:scale(1.035);opacity:.9}
+  .ig-item .ig-play{position:absolute;right:12px;top:12px;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;border-radius:50%;
+    background:rgba(23,20,13,.4);color:#fff;pointer-events:none}
+  .ig-item .ig-play svg{width:11px;height:11px}
+  .ig-cta{display:flex;justify-content:center;margin-top:clamp(38px,4vw,56px)}
+  .ig-follow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-deep);
+    border-bottom:1px solid rgba(47,54,64,.25);padding-bottom:7px;
+    transition:border-color .25s var(--ease),color .25s var(--ease)}
+  .ig-follow:hover{color:var(--blue);border-bottom-color:var(--blue)}
+  .ig-follow svg{width:15px;height:15px;flex:0 0 auto}
+  .ig-grid[hidden]{display:none}
+
+  @media (max-width:900px){
+    .ig-grid{gap:12px}
+  }
+  @media (max-width:640px){
+    .ig-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .ig-follow{letter-spacing:.1em;font-size:.66rem;text-align:center;line-height:1.6}
+  }
+
   .wins-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
   .win-tile{background:var(--ink-deep);padding:34px 26px;display:flex;flex-direction:column;gap:14px;min-height:200px;justify-content:flex-end}
   .win-tile.alt{background:#3E5570}
@@ -1164,50 +1182,91 @@
   </div>
 </section>
 
-<section class="igfeed">
+<section class="igfeed" id="instagram">
   <div class="shell">
-    <div class="ig-head">
-      <h2>Najnowsze na Instagramie</h2>
-      <a class="ig-follow" href="https://www.instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener">@monika_adamczyk_fotografia</a>
-    </div>
-    <div class="ig-grid" id="igGrid">
-      <!--
-        Automatyczny feed (behold.so) — ta sama metoda co na StopMoments.
-        Kroki wdrożenia:
-        1) Załóż konto na behold.so i podepnij @monika_adamczyk_fotografia (konto Creator/Business).
-        2) Wygeneruj publiczny feed JSON i wklej jego URL poniżej w miejsce BEHOLD_FEED_URL.
-        3) Ten skrypt sam zbuduje siatkę 6 najnowszych postów z linkiem do każdego z nich.
-      -->
-      <div class="ig-fallback" id="igFallback">
-        <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ink)">Podłączenie na etapie wdrożenia</span>
-        <span>Automatyczny podgląd najnowszych postów pojawi się tu po skonfigurowaniu feedu (behold.so). Do tego czasu zapraszam wprost na profil.</span>
-        <a class="btn sm" href="https://www.instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener">Zobacz na Instagramie</a>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Instagram</span>
+        <h2>Zobacz więcej na Instagramie</h2>
       </div>
+      <p>Najnowsze kadry z&nbsp;sesji biznesowych, zespołowych i&nbsp;reportaży — prosto z&nbsp;mojego profilu.</p>
+    </div>
+
+    <div class="ig-grid" id="igGrid" hidden></div>
+
+    <div class="ig-cta">
+      <a class="ig-follow" href="https://www.instagram.com/monika_adamczyk_fotografia"
+         target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"></circle></svg>Obserwuj @monika_adamczyk_fotografia</a>
     </div>
   </div>
 </section>
 <script>
-(function(){
-  var BEHOLD_FEED_URL = ""; // wklej tu URL feedu z behold.so, np. "https://feeds.behold.so/XXXXXXXX"
-  var IG_COUNT = 6;
-  if(!BEHOLD_FEED_URL) return;
-  fetch(BEHOLD_FEED_URL).then(function(r){return r.json()}).then(function(posts){
-    var grid = document.getElementById('igGrid');
-    var fallback = document.getElementById('igFallback');
-    if(!posts || !posts.length) return;
-    grid.innerHTML = '';
-    posts.slice(0, IG_COUNT).forEach(function(p){
+/* Feed Instagrama — dane z własnego endpointu /api/instagram (oficjalne Instagram Graph API).
+   Token żyje wyłącznie po stronie Cloudflare Pages Function, nigdy w tym pliku. */
+(function () {
+  var ENDPOINT = '/api/instagram';
+  var COUNT = 6;
+  var grid = document.getElementById('igGrid');
+  if (!grid) return;
+
+  var PLAY = '<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M2.5 1.4v9.2L10.4 6z"></path></svg>';
+
+  function pick(post) {
+    if (post.media_type === 'VIDEO') return post.thumbnail_url || post.media_url;
+    return post.media_url || post.thumbnail_url;
+  }
+
+  function render(posts) {
+    var frag = document.createDocumentFragment();
+    var used = 0;
+    posts.forEach(function (p) {
+      if (used >= COUNT) return;
+      var src = pick(p);
+      if (!src) return;
       var a = document.createElement('a');
-      a.href = p.permalink || '#';
-      a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'ig-item';
+      a.href = p.permalink;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      var caption = (p.caption || '').replace(/\s+/g, ' ').trim().slice(0, 110);
+      a.setAttribute('aria-label', caption
+        ? 'Post na Instagramie: ' + caption
+        : 'Zobacz post na Instagramie');
       var img = document.createElement('img');
-      img.src = p.mediaUrl || p.thumbnailUrl || '';
+      img.src = src;
       img.loading = 'lazy';
-      img.alt = 'Post z Instagrama — Monika Adamczyk Fotografia';
+      img.decoding = 'async';
+      img.alt = caption || 'Zdjęcie z profilu Monika Adamczyk Fotografia na Instagramie';
+      // Kadr pionowy (4:5) trzyma twarze w górnej części — poziomy i kwadrat
+      // kadrujemy od środka, żeby nie ucinać kompozycji przypadkowo.
+      img.addEventListener('load', function () {
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        img.style.objectPosition = (img.naturalWidth / img.naturalHeight >= 0.95)
+          ? '50% 50%' : '50% 38%';
+      });
+      img.addEventListener('error', function () { a.remove(); });
       a.appendChild(img);
-      grid.appendChild(a);
+      if (p.media_type === 'VIDEO') {
+        var badge = document.createElement('span');
+        badge.className = 'ig-play';
+        badge.innerHTML = PLAY;
+        a.appendChild(badge);
+      }
+      frag.appendChild(a);
+      used++;
     });
-  }).catch(function(){ /* fallback zostaje widoczny */ });
+    if (!used) return;
+    grid.appendChild(frag);
+    grid.hidden = false;
+  }
+
+  fetch(ENDPOINT, { headers: { 'Accept': 'application/json' } })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (data) {
+      var posts = (data && data.data) || [];
+      if (posts.length) render(posts);
+    })
+    .catch(function () { /* bez feedu zostaje nagłówek + CTA — sekcja nie pustoszeje */ });
 })();
 </script>
 
