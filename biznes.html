@@ -482,19 +482,68 @@
   /* proof (legacy rules removed — see .review-card for the active testimonial styling) */
   .proof{background:var(--sand)}
 
-  /* final CTA */
-  .final{text-align:center}
-  .final h2{font-size:clamp(2.2rem,4.4vw,3.4rem);max-width:20ch;margin:0 auto 22px}
-  .final p{color:var(--ink-70);max-width:52ch;margin:0 auto 34px;font-size:1rem;line-height:1.65}
-  .final .hero-cta{justify-content:center}
-  .final .fine{margin-top:28px;font-size:.72rem;color:var(--ink-45);letter-spacing:.03em}
+  /* ---- domknięcie sprzedaży ---- */
+  .closer{background:var(--paper)}
+  .closer h2{font-size:clamp(2.05rem,3.8vw,3.05rem);max-width:20ch;line-height:1.07;margin-top:16px}
+  .closer .cl-lead{margin-top:24px;color:var(--ink-70);font-size:1rem;line-height:1.8;max-width:60ch}
+  .cl-uses{display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid rgba(47,54,64,.18);margin-top:clamp(48px,5vw,76px)}
+  .cl-use{padding:34px 30px 6px;border-left:1px solid rgba(47,54,64,.18)}
+  .cl-use:first-child{padding-left:0;border-left:none}
+  .cl-use:last-child{padding-right:0}
+  .cl-use h3{font-size:1.2rem;font-weight:600;line-height:1.25}
+  .cl-use p{margin-top:12px;font-size:.82rem;line-height:1.72;color:var(--ink-45)}
 
-  footer{border-top:1px solid var(--line);padding:44px 0;background:var(--ink-deep);color:var(--paper)}
-  footer .shell{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-  footer .f-links{display:flex;gap:26px}
-  footer a{font-size:.78rem;color:rgba(250,249,247,.7)}
+  /* ---- końcowe CTA ---- */
+  .endcta{background:var(--sand);text-align:center}
+  .endcta h2{font-size:clamp(2.05rem,4vw,3.1rem);max-width:26ch;margin:16px auto 0;line-height:1.08}
+  .endcta .ec-lead{margin:24px auto 0;max-width:56ch;color:var(--ink-70);font-size:1rem;line-height:1.78}
+  .ec-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  .trustbar{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 26px;
+    margin:clamp(46px,4.8vw,68px) auto 0;padding-top:26px;
+    border-top:1px solid rgba(47,54,64,.16);max-width:880px}
+  .trustbar span{display:flex;align-items:center;gap:12px;font-size:.7rem;letter-spacing:.12em;
+    text-transform:uppercase;font-weight:600;color:var(--ink-45)}
+  .trustbar span + span::before{content:"";width:4px;height:4px;border-radius:50%;
+    background:rgba(47,54,64,.28);flex:0 0 auto}
+
+  /* ---- stopka ---- */
+  footer{border-top:none;padding:54px 0 38px;background:var(--ink-deep);color:var(--paper)}
+  footer .shell{display:block}
+  .ft-top{display:flex;justify-content:space-between;align-items:flex-start;gap:34px;flex-wrap:wrap}
+  .ft-logo{font-family:'Cormorant Garamond',serif;line-height:1;color:#fff;display:block}
+  .ft-logo .name{display:block;font-size:1.32rem;font-weight:600;letter-spacing:.01em}
+  .ft-logo .tag{display:block;margin-top:7px;font-family:'Montserrat',sans-serif;font-size:.58rem;
+    font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--blue-soft)}
+  footer nav.ft-nav{position:static;background:none;backdrop-filter:none;border-bottom:none;
+    display:flex;flex-wrap:wrap;gap:12px 26px;padding-top:4px}
+  footer a{font-size:.78rem;color:rgba(250,249,247,.72)}
   footer a:hover{color:var(--blue-soft)}
-  footer .copy{font-size:.72rem;color:rgba(250,249,247,.45)}
+  .ft-contact{margin-top:32px;padding-top:22px;border-top:1px solid rgba(250,249,247,.14);
+    display:flex;flex-wrap:wrap;gap:10px 24px;font-size:.8rem;color:rgba(250,249,247,.72)}
+  .ft-bottom{margin-top:20px;font-size:.7rem;color:rgba(250,249,247,.42)}
+  .ft-bottom a{font-size:.7rem;color:rgba(250,249,247,.42)}
+
+  @media (max-width:1000px){
+    .cl-uses{grid-template-columns:repeat(2,1fr)}
+    .cl-use{padding:30px 24px 6px}
+    .cl-use:nth-child(odd){padding-left:0;border-left:none}
+    .cl-use:nth-child(even){padding-right:0}
+    .cl-use:nth-child(n+3){border-top:1px solid rgba(47,54,64,.18)}
+  }
+  @media (max-width:640px){
+    .cl-uses{grid-template-columns:1fr}
+    .cl-use{padding:26px 0 4px;border-left:none;border-top:1px solid rgba(47,54,64,.18)}
+    .cl-use:first-child{border-top:none;padding-top:30px}
+    .closer .cl-lead{max-width:none}
+    .ec-btns{flex-direction:column;align-items:stretch;gap:12px}
+    .ec-btns .btn{width:100%;justify-content:center}
+    .trustbar{flex-direction:column;align-items:center;gap:14px}
+    .trustbar span + span::before{display:none}
+    .ft-top{flex-direction:column;gap:26px}
+    footer nav.ft-nav{flex-direction:column;gap:14px}
+    .ft-contact{flex-direction:column;gap:12px}
+  }
 
   @media (max-width:900px){
     .hero-cta{flex-direction:column;align-items:stretch}
@@ -630,7 +679,7 @@
       <p>Cztery ścieżki — sesja wizerunkowa jednej osoby, całego zespołu, sesja u Ciebie w siedzibie albo reportaż z eventu. Każda z własnym cennikiem i skuratorowanym portfolio.</p>
     </div>
 
-    <div class="tabs" role="tablist">
+    <div class="tabs" id="portfolio" role="tablist">
       <button class="tab-btn active" data-tab="indywidualna" role="tab" aria-selected="true">Sesja wizerunkowa indywidualna</button>
       <button class="tab-btn" data-tab="zespolowa" role="tab" aria-selected="false">Sesja zespołowa</button>
       <button class="tab-btn" data-tab="siedziba" role="tab" aria-selected="false">Sesja w Twojej siedzibie</button>
@@ -1238,15 +1287,6 @@
   </div>
 </section>
 
-<section class="final">
-  <div class="shell">
-    <span class="eyebrow">Następny krok</span>
-    <h2 style="margin-top:18px">Zdjęcia, które będą pracować na Twoją markę.</h2>
-    <p>Wybierz wariant, napisz kilka słów o sesji, a resztę ustalimy razem.</p>
-    <div class="fine">DOJAZD W CENIE DO 30 KM OD ROPCZYC · POWYŻEJ — 3 ZŁ/KM</div>
-  </div>
-</section>
-
 <section class="crosslink">
   <div class="shell">
     <div class="cross-grid">
@@ -1263,17 +1303,71 @@
   </div>
 </section>
 
+<section class="closer">
+  <div class="shell">
+    <span class="eyebrow">Po co Ci te zdjęcia</span>
+    <h2>Zdjęcia mają pracować na Twój biznes.</h2>
+    <p class="cl-lead">Dobra sesja biznesowa to nie tylko kilka ładnych portretów. To materiał, który wykorzystasz na stronie WWW, LinkedInie, w&nbsp;social mediach, reklamach, prezentacjach i&nbsp;komunikacji marki.</p>
+
+    <div class="cl-uses">
+        <div class="cl-use">
+          <h3>Strona WWW</h3>
+          <p>Sekcja „o&nbsp;mnie”, oferta, zespół i&nbsp;realizacje.</p>
+        </div>
+        <div class="cl-use">
+          <h3>LinkedIn i&nbsp;social media</h3>
+          <p>Zdjęcie profilowe, posty, rolki, banery.</p>
+        </div>
+        <div class="cl-use">
+          <h3>Kampanie i&nbsp;reklamy</h3>
+          <p>Kreacje do Meta&nbsp;Ads, Google&nbsp;Ads i&nbsp;mailingów.</p>
+        </div>
+        <div class="cl-use">
+          <h3>Materiały firmowe i&nbsp;PR</h3>
+          <p>Prezentacje, oferty, publikacje branżowe.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="endcta">
+  <div class="shell">
+    <span class="eyebrow">Następny krok</span>
+    <h2>Porozmawiajmy o zdjęciach dla Twojej marki.</h2>
+    <p class="ec-lead">Opowiedz mi, czego potrzebujesz. Pomogę dobrać zakres sesji i&nbsp;przygotuję rozwiązanie dopasowane do Twojego biznesu.</p>
+    <div class="ec-btns">
+      <a class="btn" href="#kontakt">Umów rozmowę</a>
+      <a class="btn alt" href="mailto:kontakt@monikaadamczyk.pl">Napisz do mnie</a>
+    </div>
+    <div class="trustbar">
+        <span>13 lat doświadczenia</span>
+        <span>450+ sesji</span>
+        <span>5.0 w Google</span>
+        <span>Galeria online</span>
+        <span>Szybka realizacja</span>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="shell">
-    <div class="copy">© Monika Adamczyk Fotografia · Podkarpacie</div>
-    <div class="f-links">
-      <a href="https://instagram.com/monika_adamczyk_fotografia" target="_blank">Instagram</a>
-      <a href="#" target="_blank">Facebook</a>
-      <a href="#" target="_blank">LinkedIn</a>
-      <a href="https://stopmoments.monikaadamczyk.pl" target="_blank">Sesje rodzinne → StopMoments</a>
-      <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-      <a href="regulamin.html">Regulamin</a>
+    <div class="ft-top">
+      <a class="ft-logo" href="#oferta"><span class="name">Monika Adamczyk</span><span class="tag">Fotografia</span></a>
+      <nav class="ft-nav">
+        <a href="#oferta">Oferta</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="https://instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener">Instagram</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="regulamin.html">Regulamin</a>
+      </nav>
     </div>
+    <div class="ft-contact">
+      <a href="https://wa.me/48791601963">WhatsApp · 791 601 963</a>
+      <a href="mailto:kontakt@monikaadamczyk.pl">kontakt@monikaadamczyk.pl</a>
+      <span>Ropczyce · Podkarpacie · realizacje w całej Polsce</span>
+    </div>
+    <div class="ft-bottom">© 2026 Monika Adamczyk Fotografia · <a href="https://stopmoments.monikaadamczyk.pl" target="_blank" rel="noopener">StopMoments — fotografia rodzinna</a></div>
   </div>
 </footer>
 
