@@ -248,14 +248,24 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
   .jrow{gap:10px;margin-bottom:10px}
   section{padding:76px 0}
   .cat{padding:70px 0}
+  .cta{padding:56px 0}
+  .sec-blue{padding:48px 0}
   .wrap{padding:0 22px}
   .nav-in{padding:0 22px}
   .hero-txt{padding:0 22px 70px}
+  .pk{margin-top:28px}
+  .card{padding:30px 24px}
+  .card li{margin-bottom:10px}
+  .addons{margin-top:22px;padding:20px 22px}
 }
 @media(max-width:560px){
   .jrow{flex-direction:column;gap:10px}
   .jrow img{flex:none!important;width:100%}
   .btn-o{margin-left:0;margin-top:12px}
+  .sec-blue{padding:40px 0}
+  .cta{padding:44px 0}
+  .cta h2{margin-bottom:14px}
+  .cta p{margin-bottom:26px}
 }
 /* ══════════ NAWIGACJA Z ROZWIJANYM MENU ══════════ */
 .nav-item{position:relative}
@@ -1052,37 +1062,4 @@ picture img{display:block;width:100%;height:auto}
 }
 @media(max-width:900px){
   .kolaz .k2 picture img{max-height:60vh}
-}
-
-
-/* ══════════ FAQ — akordeon ══════════ */
-.faq-list{max-width:800px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--blue-pale)}
-.faq-item:first-child{border-top:1px solid var(--blue-pale)}
-.faq-q{
-  width:100%;background:none;border:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:28px 2px;text-align:left;font-family:'Cormorant Garamond',serif;
-  font-weight:400;font-size:clamp(19px,2.1vw,24px);color:var(--navy);transition:.3s;
-}
-.faq-q:hover{color:var(--blue)}
-.faq-q:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
-.faq-ikona{flex:0 0 20px;width:20px;height:20px;position:relative}
-.faq-ikona::before,.faq-ikona::after{
-  content:'';position:absolute;left:50%;top:50%;background:var(--blue);
-  transform:translate(-50%,-50%);transition:.3s;
-}
-.faq-ikona::before{width:14px;height:1px}
-.faq-ikona::after{width:1px;height:14px}
-.faq-q[aria-expanded="true"] .faq-ikona::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
-.faq-a{height:0;overflow:hidden;transition:height .35s cubic-bezier(.4,0,.2,1)}
-.faq-a-in{padding:0 40px 28px 2px;font-size:15px;line-height:1.85;color:var(--ink-soft)}
-.faq-stopka{text-align:center;margin-top:50px}
-.faq-stopka p{margin-bottom:20px;color:var(--ink-soft)}
-/* przycisk obrysowany na jasnym tle — analogicznie do .heroC-top .btn-o */
-.faq-stopka .btn-o{border-color:var(--blue);color:var(--blue);background:transparent;margin-left:0}
-.faq-stopka .btn-o:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-@media(max-width:560px){
-  .faq-q{padding:22px 2px;gap:16px}
-  .faq-a-in{padding-right:26px}
 }
