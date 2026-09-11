@@ -680,6 +680,38 @@
     .faq-wrap{grid-template-columns:1fr;gap:32px}
     .faq-side{position:static}
   }
+
+  /* 6) Nawigacja — desktop: linki + CTA po prawej (bez zmian stylu, tylko lista).
+        Mobile/tablet: CTA i hamburger zawsze widoczne w pasku, linki w rozwijanym
+        panelu zamiast całkowicie znikać. */
+  .nav-actions{display:flex;align-items:center;gap:18px}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;
+    width:34px;height:34px;border:none;background:none;padding:0;cursor:pointer;flex-shrink:0}
+  .nav-toggle span{display:block;width:100%;height:2px;background:var(--ink-deep);
+    transition:transform .25s ease,opacity .2s ease}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  #oferta,#proces,#opinie,#faq,#kontakt{scroll-margin-top:100px}
+
+  @media (max-width:1100px){
+    .nav-toggle{display:flex}
+    .nav-cta{padding:9px 16px;font-size:.66rem}
+    .navlinks{
+      display:flex;position:absolute;left:0;right:0;top:100%;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      padding:4px 22px 10px;max-height:0;overflow:hidden;opacity:0;
+      pointer-events:none;transition:max-height .3s ease,opacity .25s ease
+    }
+    .navlinks.open{max-height:360px;opacity:1;pointer-events:auto}
+    .navlinks a{padding:14px 0;border-bottom:1px solid var(--line);font-size:.85rem}
+    .navlinks a:last-child{border-bottom:none}
+  }
+  @media (max-width:640px){
+    #oferta,#proces,#opinie,#faq,#kontakt{scroll-margin-top:82px}
+  }
 </style>
 </head>
 <body>
@@ -695,15 +727,39 @@
 <nav>
   <div class="shell bar">
     <div class="logo"><span class="name">Monika Adamczyk</span><span class="tag">Fotografia</span></div>
-    <div class="navlinks">
+    <div class="navlinks" id="navlinks">
       <a href="#oferta">Oferta i portfolio</a>
-      <a href="#ebook">E-book</a>
+      <a href="#proces">Proces</a>
       <a href="#opinie">Opinie</a>
       <a href="#faq">FAQ</a>
-      <a class="btn" href="#kontakt">Umów rozmowę</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn nav-cta" href="#kontakt">Umów rozmowę</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+<script>
+(function(){
+  var t=document.getElementById("navToggle"), n=document.getElementById("navlinks");
+  if(!t||!n) return;
+  t.addEventListener("click", function(){
+    var open = n.classList.toggle("open");
+    t.classList.toggle("open", open);
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  n.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      n.classList.remove("open");
+      t.classList.remove("open");
+      t.setAttribute("aria-expanded", "false");
+    });
+  });
+})();
+</script>
 
 <header class="hero">
   <div class="hero-copy">
@@ -852,7 +908,7 @@
             <td data-label="Zdjęcia">60+ zdjęć</td>
             <td data-label="Dostawa">priorytetowo — wybór do 3 dni</td>
             <td data-label="Cena" class="cena">2490 zł <span>netto</span></td>
-            <td><a class="btn alt sm" href="#kontakt">Zobacz ofertę</a></td>
+            <td><a class="btn alt sm" href="#kontakt">Sprawdź dostępność</a></td>
           </tr>
         </tbody>
       </table>
@@ -914,7 +970,7 @@
             <td data-label="Zdjęcia">2–3 ujęcia / osobę + grupowe</td>
             <td data-label="Dostawa">do ustalenia</td>
             <td data-label="Cena" class="cena">od 3200 zł</td>
-            <td><a class="btn alt sm" href="#kontakt">Zobacz ofertę</a></td>
+            <td><a class="btn alt sm" href="#kontakt">Sprawdź dostępność</a></td>
           </tr>
         </tbody>
       </table>
@@ -977,7 +1033,7 @@
             <td data-label="Zdjęcia">60+ zdjęć</td>
             <td data-label="Dostawa">priorytetowo — wybór do 3 dni</td>
             <td data-label="Cena" class="cena">2490 zł <span>netto</span></td>
-            <td><a class="btn alt sm" href="#kontakt">Zobacz ofertę</a></td>
+            <td><a class="btn alt sm" href="#kontakt">Sprawdź dostępność</a></td>
           </tr>
         </tbody>
       </table>
@@ -1039,7 +1095,7 @@
             <td data-label="Zdjęcia">100+ zdjęć</td>
             <td data-label="Dostawa">pierwsze w 6 h, całość do 24–48 h</td>
             <td data-label="Cena" class="cena">2190 zł <span>netto</span></td>
-            <td><a class="btn alt sm" href="#kontakt">Zobacz ofertę</a></td>
+            <td><a class="btn alt sm" href="#kontakt">Sprawdź dostępność</a></td>
           </tr>
         </tbody>
       </table>
