@@ -745,11 +745,13 @@
     .cennik .cena{font-size:1.3rem}
   }
 
-  @supports (background-image: image-set(url('a.webp') type('image/webp') 1x)) {
-    .hero{background-image:image-set(
-      url('biznes-img/hero-biznes-wide-1000.webp') 1x type('image/webp'),
-      url('biznes-img/hero-biznes-wide-1600.webp') 1.6x type('image/webp')
-    )}
+  @media (min-width:901px) {
+    @supports (background-image: image-set(url('a.webp') type('image/webp') 1x)) {
+      .hero{background-image:image-set(
+        url('biznes-img/hero-biznes-wide-1000.webp') 1x type('image/webp'),
+        url('biznes-img/hero-biznes-wide-1600.webp') 1.6x type('image/webp')
+      )}
+    }
   }
 
   picture{display:contents}
