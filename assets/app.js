@@ -56,7 +56,7 @@ function closeLb(){ lb.classList.remove('on'); document.body.style.overflow = ''
 // Wklej tutaj adres swojego feedu z panelu Behold, np.:
 // const BEHOLD_FEED = 'https://feeds.behold.so/aB3xY9kLm2';
 const BEHOLD_FEED = 'https://feeds.behold.so/TWOJ_ID_FEEDU';
-const IG_COUNT = 10;
+const IG_COUNT = 6; // zajawka jest zwarta — max 6 na desktopie, 4 na mobile (CSS)
 
 (async function loadInstagram(){
   if (BEHOLD_FEED.includes('TWOJ_ID_FEEDU')) return;

@@ -1,9 +1,10 @@
 /**
  * Cloudflare Pages Function — /api/instagram
  * ------------------------------------------------------------------
- * Oddaje 6 najnowszych postów z konta @monika_adamczyk_fotografia,
- * korzystając z oficjalnego Instagram Graph API (Instagram API with
- * Instagram Login). Token nigdy nie trafia do przeglądarki.
+ * Oddaje do 6 postów z konta @monika_adamczyk_fotografia dla sekcji
+ * Instagram na /biznes, korzystając z oficjalnego Instagram Graph API
+ * (Instagram API with Instagram Login). Token nigdy nie trafia do
+ * przeglądarki.
  *
  * Wymagane w Cloudflare Pages → Settings:
  *   Variables and Secrets:
@@ -14,16 +15,38 @@
  * Token długożyciowy żyje 60 dni i jest tu odnawiany automatycznie,
  * gdy ma więcej niż 30 dni. Odnowiony token ląduje w KV — IG_TOKEN_SEED
  * służy tylko jako wartość startowa.
+ *
+ * KURACJA TREŚCI (sekcja biznesowa) ─────────────────────────────────
+ * Instagram Graph API nie pozwala filtrować `/me/media` po temacie
+ * posta, więc "najnowsze publikacje" mogłyby wymieszać sesje biznesowe
+ * z prywatnymi kadrami. Rozwiązanie: podaj tu ID konkretnych postów,
+ * które mają się pokazywać na /biznes (sesje wizerunkowe, zespoły,
+ * eventy, branding, edukacja). Dane (zdjęcie, opis, link) i tak są
+ * pobierane na żywo z Instagrama dla każdego z tych ID — to nie są
+ * statyczne zrzuty, tylko wybór KTÓRE posty pokazać.
+ *
+ * Jak znaleźć ID posta: w Meta Business Suite otwórz post → "..." →
+ * "Wyświetl informacje o poście" (numer przy "ID posta"), albo chwilowo
+ * dodaj do URL-a tego endpointu `?debug=1`, żeby zobaczyć ID najnowszych
+ * publikacji w odpowiedzi JSON.
+ *
+ * Pusta tablica poniżej = tryb zapasowy: pokazujemy po prostu najnowsze
+ * publikacje (zachowanie sprzed tej zmiany), żeby sekcja nigdy nie
+ * została pusta, zanim ktoś uzupełni listę.
  */
+const CURATED_IDS = [
+  // '17912345678901234',
+  // '17923456789012345',
+];
 
 const GRAPH = 'https://graph.instagram.com';
 const FIELDS = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp';
-const LIMIT = 12;                    // pobieramy z zapasem, front bierze 6
+const LIMIT = 30;                    // tryb "najnowsze": spory zapas, front bierze 6
 const CACHE_SECONDS = 30 * 60;       // 30 min — feed nie zmienia się częściej
 const REFRESH_AFTER_MS = 30 * 24 * 60 * 60 * 1000; // odnów token po 30 dniach
 
 const TOKEN_KEY = 'ig:token';
-const FEED_KEY = 'ig:feed';
+const FEED_KEY = CURATED_IDS.length ? 'ig:feed:curated' : 'ig:feed:recent';
 
 const JSON_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
@@ -78,6 +101,37 @@ async function getToken(env) {
   return record.token;
 }
 
+/** Pobiera z góry wybrane posty (po ID) — kolejność z CURATED_IDS jest zachowana. */
+async function fetchCurated(ids, token) {
+  const results = await Promise.all(
+    ids.map(async (id) => {
+      try {
+        const url = `${GRAPH}/${id}?fields=${FIELDS}&access_token=${encodeURIComponent(token)}`;
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const post = await res.json();
+        return post && !post.error ? post : null;
+      } catch (_) {
+        return null;
+      }
+    })
+  );
+  return results.filter(Boolean);
+}
+
+/** Pobiera najnowsze publikacje z konta (tryb zapasowy, sprzed kuracji). */
+async function fetchRecent(token) {
+  const url = `${GRAPH}/me/media?fields=${FIELDS}&limit=${LIMIT}&access_token=${encodeURIComponent(token)}`;
+  const res = await fetch(url, { cf: { cacheTtl: 300 } });
+  if (!res.ok) {
+    const err = new Error('api_error');
+    err.status = res.status;
+    throw err;
+  }
+  const payload = await res.json();
+  return payload.data || [];
+}
+
 /** Dla karuzeli bierzemy pierwsze zdjęcie z albumu, jeśli rodzic go nie zwrócił. */
 async function fillCarousels(posts, token) {
   const gaps = posts.filter(
@@ -102,11 +156,12 @@ async function fillCarousels(posts, token) {
   return posts;
 }
 
-export async function onRequestGet({ env, waitUntil }) {
+export async function onRequestGet({ env, waitUntil, request }) {
   const kv = env.IG_KV;
+  const debug = new URL(request.url).searchParams.get('debug') === '1';
 
-  // 1. Świeży cache — oddajemy natychmiast, bez ruszania API Meta.
-  if (kv) {
+  // 1. Świeży cache — oddajemy natychmiast, bez ruszania API Meta (pomijane w trybie debug).
+  if (kv && !debug) {
     try {
       const cached = await kv.get(FEED_KEY, { type: 'json' });
       if (cached && Date.now() - cached.at < CACHE_SECONDS * 1000) {
@@ -123,33 +178,39 @@ export async function onRequestGet({ env, waitUntil }) {
   }
 
   try {
-    const url = `${GRAPH}/me/media?fields=${FIELDS}&limit=${LIMIT}&access_token=${encodeURIComponent(token)}`;
-    const res = await fetch(url, { cf: { cacheTtl: 300 } });
-
-    if (!res.ok) {
-      // API padło — lepiej pokazać ostatni znany feed niż pustkę.
-      if (kv) {
-        const stale = await kv.get(FEED_KEY, { type: 'json' });
-        if (stale) return json({ data: stale.data, stale: true });
-      }
-      return json({ data: [], error: 'api_error', status: res.status }, 200);
+    let posts;
+    if (CURATED_IDS.length) {
+      // Tryb kuratorski: dokładnie te posty, w tej kolejności.
+      posts = await fetchCurated(CURATED_IDS, token);
+    } else {
+      const raw = await fetchRecent(token);
+      posts = raw.filter((p) => p.media_type !== 'STORY');
     }
 
-    const payload = await res.json();
-    let posts = (payload.data || []).filter((p) => p.media_type !== 'STORY');
     posts = await fillCarousels(posts, token);
-    posts = posts
-      .filter((p) => p.media_url || p.thumbnail_url)
-      .slice(0, 6)
-      .map((p) => ({
-        id: p.id,
-        caption: p.caption || '',
-        media_type: p.media_type,
-        media_url: p.media_url,
-        thumbnail_url: p.thumbnail_url,
-        permalink: p.permalink,
-        timestamp: p.timestamp,
-      }));
+    posts = posts.filter((p) => p.media_url || p.thumbnail_url).slice(0, 6);
+
+    if (debug) {
+      // Podgląd ID/opisów do skopiowania do CURATED_IDS — bez tokenu, bez cache.
+      return json({
+        data: posts.map((p) => ({
+          id: p.id,
+          caption: (p.caption || '').slice(0, 90),
+          permalink: p.permalink,
+          timestamp: p.timestamp,
+        })),
+      });
+    }
+
+    posts = posts.map((p) => ({
+      id: p.id,
+      caption: p.caption || '',
+      media_type: p.media_type,
+      media_url: p.media_url,
+      thumbnail_url: p.thumbnail_url,
+      permalink: p.permalink,
+      timestamp: p.timestamp,
+    }));
 
     if (kv) {
       waitUntil(kv.put(FEED_KEY, JSON.stringify({ at: Date.now(), data: posts })));

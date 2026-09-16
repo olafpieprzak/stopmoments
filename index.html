@@ -13,7 +13,7 @@
   :root{
     --navy:#1F3247; --navy-deep:#172433;
     --ink:#2E3540; --ink-soft:#5B6570;
-    --blue:#6E869E; --blue-pale:#DDE5EC;
+    --blue:#6E869E; --blue-pale:#DDE5EC; --blue-ink:#51687C;
     --cream:#FBF8F4; --cream-deep:#F4EFE8; --sand:#EDE5DA;
     --rust:#B5763F;
     --white:#fff;
@@ -26,7 +26,7 @@
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
   h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.15}
   .script{font-family:'Caveat',cursive;color:var(--rust);font-weight:600}
-  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+  .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--blue-ink)}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:2px;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:.25s;white-space:nowrap}
   .btn svg{width:14px;height:14px}
   .btn-dark{background:var(--navy);color:#fff}
@@ -41,9 +41,9 @@
 
   /* NAV */
   nav{position:sticky;top:0;z-index:50;background:rgba(251,248,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(31,50,71,.08)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:7px 0}
   .brand{display:flex;align-items:center;gap:12px}
-  .brand-logo{height:80px;width:auto;display:block}
+  .brand-logo{height:90px;width:auto;display:block}
   .nav-cta-btn{border-radius:3px;letter-spacing:.04em;padding:15px 26px;font-weight:700}
   .brand .mono{width:44px;height:44px;border:1.5px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy);flex-shrink:0}
   .brand .txt{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:700;letter-spacing:.06em;color:var(--navy);line-height:1.3}
@@ -51,34 +51,89 @@
   .nav-links{display:flex;align-items:center;gap:34px}
   .nav-links a:not(.btn){font-size:.76rem;font-weight:600;letter-spacing:.05em;color:var(--ink-soft)}
   .nav-links a:not(.btn):hover{color:var(--navy)}
-  .nav-links .ig{width:20px;height:20px;color:var(--ink-soft)}
+  .nav-links .ig{width:20px;height:20px;color:var(--ink-soft);transition:color .2s ease}
+  .nav-links .ig-link.ig-alt .ig{color:var(--blue-ink)}
+  .nav-links .ig-link:hover .ig{color:var(--navy)}
   @media(max-width:900px){.nav-links a:not(.btn):not(.ig-link){display:none}}
 
-  /* HERO */
-  .hero{
-    position:relative;
-    height:680px;
-    background-image:url('img/home/hero-monika-wide-composed.jpg');
-    background-size:cover;
-    background-position:center right;
-    background-repeat:no-repeat;
+  /* HERO — interaktywna brama do dwóch ścieżek (business / stories) */
+  .hero{position:relative;height:clamp(600px,84vh,860px);display:grid;grid-template-columns:minmax(340px,40%) 1fr;background:var(--cream);overflow:hidden}
+
+  .hero-copy{position:relative;z-index:3;padding:56px 30px 60px max(28px,calc((100vw - 1240px)/2 + 56px));display:flex;flex-direction:column;justify-content:flex-end;min-height:0}
+
+  .hero .lede{margin-top:26px;color:var(--ink-soft);font-size:1.02rem;line-height:1.7;max-width:46ch;transition:opacity .28s ease;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+  .hero .lede.fading{opacity:0}
+
+  .hero-cta-main{display:inline-flex;align-items:center;gap:9px;font-size:.74rem;font-weight:700;letter-spacing:.12em;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:7px;max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease, opacity .4s ease, margin-top .4s ease;white-space:nowrap;width:max-content}
+  .hero-cta-main.show{max-height:44px;opacity:1;margin-top:24px}
+  .hero-cta-main svg{width:13px;height:13px;transition:.3s}
+  .hero-cta-main:hover svg{transform:translateX(5px)}
+
+  .paths{margin-top:40px;display:flex;flex-direction:column}
+  .path{position:relative;padding:20px 0;border-top:1px solid rgba(31,50,71,.08);cursor:pointer;transition:opacity .35s ease}
+  .path:last-child{border-bottom:1px solid rgba(31,50,71,.08)}
+  .path .prow{display:flex;align-items:baseline;gap:16px}
+  .path .pidx{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;color:var(--blue-ink);min-width:70px}
+  .path .pname{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--navy);transition:color .35s ease, transform .35s ease;letter-spacing:.01em}
+  .path .parrow{display:inline-flex;align-items:center;opacity:0;transform:translateX(-6px);transition:opacity .3s ease, transform .3s ease;color:var(--blue-ink)}
+  .path .parrow svg{width:16px;height:16px}
+  .path .ptag{margin:6px 0 0 86px;font-size:.92rem;color:var(--ink-soft);max-width:34ch}
+  .path.active .pname{color:var(--blue-ink);transform:translateX(8px)}
+  .path.active .parrow{opacity:1;transform:translateX(0)}
+  .paths.has-active .path:not(.active){opacity:.55}
+  .path:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+
+  .hero-photo{position:relative}
+  .hero-photo .layer{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
+  .hero-photo .layer img{width:100%;height:100%;object-fit:cover}
+  .hero-photo .layer.on{opacity:1}
+  .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, var(--cream) 0%, rgba(251,248,244,.85) 4%, rgba(251,248,244,0) 22%);z-index:2}
+
+  /* per-category framing — each photo cropped on purpose, not just "cover" */
+  .layer[data-cat="default"] img{ object-position: 62% 14%; }
+  .layer[data-cat="stories"] img{ object-position: 58% 16%; }
+  .layer[data-cat="business"] img{ object-position: 46% 9%; }
+
+  .overlap-type{position:absolute;z-index:4;top:9%;left:calc(39% - 40px);right:4%;pointer-events:none;user-select:none}
+  .type-scrim{position:absolute;top:-14%;bottom:-20%;left:-16%;right:-6%;z-index:-1;border-radius:6px;
+    background:radial-gradient(ellipse 60% 100% at 0% 40%, rgba(251,248,244,.9) 0%, rgba(251,248,244,.55) 38%, rgba(251,248,244,0) 68%);
+    opacity:0;transition:opacity .45s ease;}
+  .overlap-type.on-photo .type-scrim{opacity:1}
+  .overlap-type span{display:block;font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(2.2rem,5.6vw,5.4rem);line-height:1;color:var(--navy);letter-spacing:-.01em;white-space:nowrap;transition:opacity .28s ease, transform .28s ease, color .35s ease;text-shadow:none}
+  .overlap-type span.accent{font-style:italic;color:var(--blue)}
+  .overlap-type span.fading{opacity:0;transform:translateY(8px)}
+  /* future-proofing: if a photo variant is dark behind the headline, flip to light text */
+  .overlap-type.theme-light span{color:#fff;text-shadow:0 1px 14px rgba(15,23,33,.3)}
+  .overlap-type.theme-light span.accent{color:#EAF0F5}
+  .overlap-type.theme-light .type-scrim{background:radial-gradient(ellipse 60% 100% at 0% 40%, rgba(15,23,33,.55) 0%, rgba(15,23,33,.3) 38%, rgba(15,23,33,0) 68%)}
+
+  @media(max-width:1300px){
+    .overlap-type{left:calc(41% - 40px)}
   }
-  .hero::before{
-    content:'';
-    position:absolute;inset:0;
-    background:linear-gradient(90deg, rgba(250,249,247,0.96) 0%, rgba(250,249,247,0.82) 35%, rgba(250,249,247,0) 62%);
-    z-index:1;
+
+  @media(max-width:960px){
+    .hero{grid-template-columns:1fr;height:auto;min-height:0}
+    .hero-copy{padding:34px 24px 0}
+    .overlap-type{position:static;padding:0 24px;margin-bottom:8px}
+    .overlap-type span{font-size:clamp(2.3rem,9vw,3rem)}
+    .type-scrim{display:none}
+    .hero-photo{height:58vh;min-height:380px;max-height:520px;order:3;margin-top:26px}
+    .hero-photo::after{display:none}
+    .paths{margin-top:30px}
+    .path .ptag{margin-left:0}
+    .hero-cta-main.show{margin-top:16px}
+
+    .layer[data-cat="default"] img{ object-position: 68% 18%; }
+    .layer[data-cat="stories"] img{ object-position: 64% 20%; }
+    .layer[data-cat="business"] img{ object-position: 50% 50%; }
   }
-  .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;height:100%;padding:0 30px 0 max(28px,calc((100vw - 1240px)/2))}
-  .hero-copy h1{max-width:420px;font-size:clamp(2.6rem,3.4vw,3.7rem);color:#2F3640;margin:0;line-height:1.12}
-  .hero-eyebrow-text{font-size:.76rem;font-weight:600;letter-spacing:.18em;color:#8FA3B8;text-transform:uppercase}
-  .hero-copy p.lead{margin:2px 0 6px;color:#5B6570;max-width:40ch;font-size:1.04rem;line-height:1.65}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-  .hero-cta .btn{border-radius:3px;box-shadow:none;border:none;padding:19px 30px;letter-spacing:.04em;font-size:.74rem;font-weight:700;transition:.25s ease}
-  .hero-cta .btn-hero-dark{background:#2F3640;color:#fff;padding:19px 36px}
-  .hero-cta .btn-hero-dark:hover{background:#1e252c;transform:translateY(-1px)}
-  .hero-cta .btn-hero-blue{background:#8FA3B8;color:#fff}
-  .hero-cta .btn-hero-blue:hover{background:#7c93aa}
+
+  @media(max-width:600px){
+    .hero-photo{height:52vh;min-height:340px}
+    .layer[data-cat="default"] img{ object-position: 72% 17%; }
+    .layer[data-cat="stories"] img{ object-position: 68% 19%; }
+    .layer[data-cat="business"] img{ object-position: 48% 6%; }
+  }
 
   /* WYBIERZ */
   .choose-head{text-align:center;margin-bottom:44px}
@@ -161,11 +216,6 @@
 
   @media(max-width:900px){
     section{padding:64px 0}
-    .hero{height:auto;min-height:850px;background-position:80% center}
-    .hero::before{background:linear-gradient(180deg, rgba(250,249,247,0.97) 0%, rgba(250,249,247,0.93) 38%, rgba(250,249,247,0.55) 60%, rgba(250,249,247,0.15) 100%)}
-    .hero-copy{position:relative;height:auto;padding:40px 24px 420px}
-    .hero-cta{flex-direction:column;align-items:stretch}
-    .hero-cta .btn{text-align:center}
     .choose-grid{grid-template-columns:1fr}
     .choose-card{min-height:420px}
     .pf-grid{grid-template-columns:repeat(3,1fr)}
@@ -198,7 +248,7 @@
         <a class="ig-link" href="https://www.instagram.com/monika_adamczyk_fotografia" target="_blank" rel="noopener" aria-label="Instagram — Monika Adamczyk Fotografia (biznes)" title="Instagram: biznes — @monika_adamczyk_fotografia">
           <svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
-        <a class="ig-link" href="https://www.instagram.com/stopmoments.foto" target="_blank" rel="noopener" aria-label="Instagram — StopMoments (rodzinne)" title="Instagram: rodzinne — @stopmoments.foto">
+        <a class="ig-link ig-alt" href="https://www.instagram.com/stopmoments.foto" target="_blank" rel="noopener" aria-label="Instagram — StopMoments (rodzinne)" title="Instagram: rodzinne — @stopmoments.foto">
           <svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
       </span>
@@ -207,17 +257,135 @@
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="heroInteractive">
+  <div class="hero-photo">
+    <div class="layer on" data-cat="default"><img src="img/home/hero-couch.jpg" alt="Monika Adamczyk"></div>
+    <div class="layer" data-cat="business"><img src="img/home/hero-studio.jpg" alt="Monika Adamczyk — praca"></div>
+    <div class="layer" data-cat="stories"><img src="img/home/hero-couch.jpg" alt="Monika Adamczyk — rodzina"></div>
+  </div>
+  <div class="overlap-type" id="overlapType">
+    <div class="type-scrim"></div>
+    <span id="hType1">Twoja historia.</span>
+    <span id="hType2" class="accent">Moje światło.</span>
+  </div>
   <div class="hero-copy">
-    <span class="hero-eyebrow-text">Fotografia biznesowa i rodzinna</span>
-    <h1>Twoja historia.<br>Moje światło.</h1>
-    <p class="lead">Pomagam przedsiębiorcom budować wizerunek i markom osobistym. Tworzę również naturalne reportaże rodzinne pełne emocji.</p>
-    <div class="hero-cta">
-      <a class="btn btn-hero-dark" href="biznes.html">Jestem przedsiębiorcą</a>
-      <a class="btn btn-hero-blue" href="rodzinne.html">Szukam sesji prywatnej</a>
+    <span class="eyebrow">Fotografia biznesowa i rodzinna</span>
+    <p class="lede" id="heroLede">Tworzę zdjęcia, które budują marki i zatrzymują historie, do których chce się wracać.</p>
+    <a class="hero-cta-main" id="heroCta" href="biznes.html">
+      <span class="hcta-label">ZOBACZ OFERTĘ BIZNESOWĄ</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+    <div class="paths" id="heroPaths">
+      <div class="path" data-cat="business" role="button" tabindex="0">
+        <div class="prow"><span class="pidx">01 / </span><span class="pname">BUSINESS</span><span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></div>
+        <p class="ptag">Sesje wizerunkowe, zespoły, eventy</p>
+      </div>
+      <div class="path" data-cat="stories" role="button" tabindex="0">
+        <div class="prow"><span class="pidx">02 / </span><span class="pname">STOPMOMENTS</span><span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></div>
+        <p class="ptag">Chrzty, imprezy okolicznościowe, sesje rodzinne</p>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+(function(){
+  var hero = document.getElementById('heroInteractive');
+  var layers = hero.querySelectorAll('.hero-photo .layer');
+  var overlapType = document.getElementById('overlapType');
+  var type1 = document.getElementById('hType1');
+  var type2 = document.getElementById('hType2');
+  var lede = document.getElementById('heroLede');
+  var cta = document.getElementById('heroCta');
+  var ctaLabel = cta.querySelector('.hcta-label');
+  var pathsWrap = document.getElementById('heroPaths');
+  var paths = hero.querySelectorAll('.path');
+
+  var COPY = {
+    default: { h1:'Twoja historia.', h2:'Moje światło.', lede:'Tworzę zdjęcia, które budują marki i zatrzymują historie, do których chce się wracać.' },
+    business: { h1:'Twoja marka.', h2:'Moje światło.', lede:'Sesje wizerunkowe, zdjęcia zespołów i reportaże, które pomagają budować profesjonalny i spójny obraz marki.', cta:'ZOBACZ OFERTĘ BIZNESOWĄ', href:'biznes.html' },
+    stories: { h1:'Twoje chwile.', h2:'Moje światło.', lede:'Chrzty, urodziny, imprezy okolicznościowe i sesje rodzinne — a przy okazji też kobiece i ciążowe.', cta:'ZOBACZ OFERTĘ STOPMOMENTS', href:'rodzinne.html' },
+  };
+
+  var current = null;
+  var revertTimer = null;
+
+  function swapText(el, text){
+    el.classList.add('fading');
+    clearTimeout(el._t);
+    el._t = setTimeout(function(){
+      el.textContent = text;
+      el.classList.remove('fading');
+    }, 200);
+  }
+
+  function setCat(cat){
+    if (cat === current) return;
+    current = cat;
+    var data = COPY[cat] || COPY.default;
+
+    layers.forEach(function(l){ l.classList.toggle('on', l.dataset.cat === (cat || 'default')); });
+    overlapType.classList.toggle('on-photo', !!cat);
+    overlapType.classList.toggle('theme-light', !!cat && data.theme === 'light');
+    swapText(type1, data.h1);
+    swapText(type2, data.h2);
+    swapText(lede, data.lede);
+
+    if (cat && data.cta){
+      ctaLabel.textContent = data.cta;
+      cta.href = data.href;
+      cta.classList.add('show');
+    } else {
+      cta.classList.remove('show');
+    }
+
+    pathsWrap.classList.toggle('has-active', !!cat);
+    paths.forEach(function(p){ p.classList.toggle('active', p.dataset.cat === cat); });
+  }
+
+  function scheduleRevert(){
+    clearTimeout(revertTimer);
+    revertTimer = setTimeout(function(){ setCat(null); }, 420);
+  }
+  function cancelRevert(){ clearTimeout(revertTimer); }
+
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  paths.forEach(function(p){
+    if (canHover){
+      p.addEventListener('mouseenter', function(){ cancelRevert(); setCat(p.dataset.cat); });
+      p.addEventListener('mouseleave', scheduleRevert);
+      p.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = COPY[p.dataset.cat].href;
+      });
+    } else {
+      p.addEventListener('click', function(){
+        if (current === p.dataset.cat){
+          window.location.href = COPY[p.dataset.cat].href;
+        } else {
+          setCat(p.dataset.cat);
+        }
+      });
+    }
+    p.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        if (current === p.dataset.cat){
+          window.location.href = COPY[p.dataset.cat].href;
+        } else {
+          setCat(p.dataset.cat);
+        }
+      }
+    });
+  });
+
+  if (canHover){
+    cta.addEventListener('mouseenter', cancelRevert);
+    cta.addEventListener('mouseleave', scheduleRevert);
+  }
+})();
+</script>
 
 <section id="wybierz">
   <div class="wrap">
@@ -230,7 +398,7 @@
         <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
           <h3>Dla biznesu</h3>
-          <p class="choose-plain">Sesje wizerunkowe<br>Eventy i konferencje<br>Zdjęcia zespołów</p>
+          <p class="choose-plain">Sesje wizerunkowe<br>Eventy i&nbsp;konferencje<br>Zdjęcia zespołów</p>
           <span class="choose-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
         </div>
       </a>
@@ -239,7 +407,7 @@
         <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.3 5 5.7 5c2 0 3.5 1.1 4.3 2.6C10.8 6.1 12.3 5 14.3 5c3.4 0 5.2 3.4 3.7 6.8C15.5 16.4 12 21 12 21z"/></svg></div>
           <h3>Dla ciebie</h3>
-          <p class="choose-plain">Sesje rodzinne<br>Reportaże z życia<br>Chwile, które zostają</p>
+          <p class="choose-plain">Sesje rodzinne<br>Reportaże z&nbsp;życia<br>Chwile, które zostają</p>
           <span class="choose-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
         </div>
       </a>
@@ -280,7 +448,7 @@
     </div>
     <div class="about-features">
       <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>13 lat doświadczenia</div>
-      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>450+ zrealizowanych sesji</div>
+      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>460+ zrealizowanych sesji</div>
       <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Indywidualne podejście</div>
       <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>Szybka realizacja</div>
       <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5L9 19"/></svg>Zdjęcia gotowe do użycia</div>
@@ -298,12 +466,12 @@
         <h3 class="testi-col-h">Opinie biznesowe</h3>
         <div class="testi-card">
           <div class="q">"</div>
-          <blockquote>Miałam przyjemność współpracy podczas eventu biznesowego. To otwarta, pełna pasji profesjonalistka w swoim fachu.</blockquote>
+          <blockquote>Miałam przyjemność współpracy podczas eventu biznesowego. To otwarta, pełna pasji profesjonalistka w&nbsp;swoim fachu.</blockquote>
           <b>Amanda</b><span>Google, sesja eventowa</span>
         </div>
         <div class="testi-card">
           <div class="q">"</div>
-          <blockquote>Bardzo polecam współpracę z Moniką przy sesjach biznesowych i wizerunkowych.</blockquote>
+          <blockquote>Bardzo polecam współpracę z&nbsp;Moniką przy sesjach biznesowych i&nbsp;wizerunkowych.</blockquote>
           <b>Arek Wiczyński</b><span>Google, sesja wizerunkowa</span>
         </div>
       </div>
@@ -312,11 +480,11 @@
         <div class="testi-card">
           <div class="q">"</div>
           <blockquote>Świetna fotograf oraz osoba, spełniła wszystkie nasze prośby odnośnie zdjęć podczas naszego wesela. Jakość zdjęć jest przepiękna.</blockquote>
-          <b>Gabriela O.</b><span>Ślub i wesele</span>
+          <b>Gabriela O.</b><span>Ślub i&nbsp;wesele</span>
         </div>
         <div class="testi-card">
           <div class="q">"</div>
-          <blockquote>Dostarczyła nam niezapomniane i piękne zdjęcia z chrztu naszego dziecka. Polecam każdemu, kto szuka wyjątkowych zdjęć z ważnych wydarzeń.</blockquote>
+          <blockquote>Dostarczyła nam niezapomniane i&nbsp;piękne zdjęcia z&nbsp;chrztu naszego dziecka. Polecam każdemu, kto szuka wyjątkowych zdjęć z&nbsp;ważnych wydarzeń.</blockquote>
           <b>Mateusz C.</b><span>Chrzest święty</span>
         </div>
       </div>
@@ -328,11 +496,11 @@
 <section id="kontakt" style="padding:90px 0;background:var(--cream-deep)">
   <div class="wrap" style="max-width:680px;text-align:center;margin:0 auto">
     <span class="eyebrow">Kontakt</span>
-    <h2 style="font-size:2rem;color:var(--navy);margin:14px 0 16px">Napiszmy, co u Ciebie</h2>
-    <p style="color:var(--ink-soft);margin-bottom:32px">Wybierz, o jaką sesję pytasz — trafisz od razu do właściwego formularza lub kontaktu na WhatsApp.</p>
+    <h2 style="font-size:2rem;color:var(--navy);margin:14px 0 16px">Napiszmy, co u&nbsp;Ciebie</h2>
+    <p style="color:var(--ink-soft);margin-bottom:32px">Wybierz, o&nbsp;jaką sesję pytasz — trafisz od razu do właściwego formularza lub kontaktu na WhatsApp.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px">
-      <a class="btn btn-dark" href="biznes.html#kontakt">Zapytaj o sesję biznesową</a>
-      <a class="btn btn-outline" href="rodzinne.html#kontakt">Zapytaj o sesję rodzinną</a>
+      <a class="btn btn-dark" href="biznes.html#kontakt">Zapytaj o&nbsp;sesję biznesową</a>
+      <a class="btn btn-outline" href="rodzinne.html#kontakt">Zapytaj o&nbsp;sesję rodzinną</a>
     </div>
     <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:.88rem;color:var(--ink-soft)">
       <a href="tel:+48791601963" style="color:inherit;font-weight:600">791 601 963</a>
@@ -350,17 +518,17 @@
       <div class="foot-col">
         <h5>Dla biznesu</h5>
         <a href="biznes.html">Sesje wizerunkowe</a>
-        <a href="biznes.html">Eventy i konferencje</a>
+        <a href="biznes.html">Eventy i&nbsp;konferencje</a>
         <a href="biznes.html">Zdjęcia zespołów</a>
       </div>
       <div class="foot-col">
         <h5>Dla ciebie</h5>
         <a href="rodzinne.html">Sesje rodzinne</a>
-        <a href="rodzinne.html">Reportaże z życia</a>
+        <a href="rodzinne.html">Reportaże z&nbsp;życia</a>
         <a href="rodzinne.html">Sesje kobiece</a>
       </div>
       <div class="foot-col">
-        <h5>O mnie</h5>
+        <h5>O&nbsp;mnie</h5>
         <a href="#o-mnie">Portfolio</a>
         <a href="#kontakt">Kontakt</a>
       </div>
