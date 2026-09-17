@@ -1058,33 +1058,6 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
   body.rodzinne-page .opinie{padding-bottom:32px}
 }
 
-/* ══════════ SKRÓTOWA NAWIGACJA pod „Co fotografuję” (tylko /rodzinne) ══════════
-   Wyłącznie lekkie anchor-linki przewijające do obrazkowych kafli niżej —
-   to kafle są głównym CTA, ta lista ma być mała, zwarta i podrzędna wobec nich. */
-.oferta-quick{
-  display:grid;grid-template-columns:repeat(5,auto);justify-content:center;
-  row-gap:9px;column-gap:clamp(16px,2.2vw,32px);margin-top:26px;
-}
-.oferta-quick a{
-  font-size:11.5px;letter-spacing:.04em;color:var(--ink-soft);
-  padding:4px 2px;transition:color .25s;white-space:nowrap;
-}
-.oferta-quick a:hover{color:var(--navy)}
-@media(max-width:940px){
-  .oferta-quick{grid-template-columns:repeat(3,auto);row-gap:8px;column-gap:clamp(14px,2.6vw,26px)}
-  .oferta-quick a{white-space:normal;text-align:center}
-}
-@media(max-width:640px){
-  .oferta-quick{
-    display:flex;flex-wrap:nowrap;justify-content:flex-start;
-    overflow-x:auto;-webkit-overflow-scrolling:touch;
-    gap:20px;margin:22px -28px 0;padding:2px 28px 8px;
-    scrollbar-width:none;mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
-  }
-  .oferta-quick::-webkit-scrollbar{display:none}
-  .oferta-quick a{flex:0 0 auto;white-space:nowrap;padding:4px 0}
-}
-
 /* ══════════ KAFLE — rzędy justowane, bez przycinania i bez dziur ══════════ */
 .tiles{display:block}
 .tile-row{display:flex;gap:clamp(12px,1.3vw,18px);margin-bottom:clamp(12px,1.3vw,18px)}
@@ -1103,7 +1076,6 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
    płynącą z proporcji zdjęcia (flex-row), więc picture musi zostać w flow —
    inaczej cały rząd kafli zapada się do 0px wysokości. */
 .tile-row .tile picture{position:static;width:100%;height:auto}
-.tile-row .tile{scroll-margin-top:110px}
 
 @media(max-width:940px){
   .tile-row{flex-wrap:wrap;gap:10px;margin-bottom:10px}
