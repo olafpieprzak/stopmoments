@@ -174,7 +174,7 @@ h2 em{font-style:italic;color:var(--blue)}
 
 
 /* ── INSTAGRAM: lekka zajawka, zwarty grid (nie duży feed) ── */
-.ig-sec{padding:88px 0 82px;background:var(--cream);text-align:center}
+.ig-sec{padding:70px 0 60px;background:var(--cream);text-align:center}
 .ig-sec h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:0}
 .ig-strip{
   display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1vw,14px);
@@ -203,7 +203,7 @@ h2 em{font-style:italic;color:var(--blue)}
   .ig-strip{gap:8px}
 }
 @media(max-width:560px){
-  .ig-sec{padding:56px 0 40px}
+  .ig-sec{padding:40px 0 40px}
   .ig-strip{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:26px}
   .ig-strip a:nth-child(n+5){display:none}
   .ig-cta{margin-top:20px}
@@ -1040,6 +1040,56 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 }
 
 
+/* ══════════ /rodzinne — ujednolicony rytm pionowy między sekcjami ══════════
+   Ogólna reguła section{padding:110px 0} w połączeniu z sąsiadującymi
+   sekcjami dawała podwójne odstępy (np. 220px między "Co fotografuję"
+   a "O mnie", ~190px między Instagramem a FAQ). Węższe, scopowane
+   nadpisania (tylko na /rodzinne, tylko na desktopie — mobile ma już
+   właściwy rytm z base rule 40px 0) sprowadzają te przejścia do
+   ok. 100–130px, bez ruszania sekcji współdzielonych z innymi podstronami. */
+@media(min-width:941px){
+  body.rodzinne-page #oferta{padding-top:70px;padding-bottom:56px}
+  body.rodzinne-page #o-mnie{padding-top:56px}
+  body.rodzinne-page .opinie{padding-bottom:56px}
+  body.rodzinne-page #faq{padding-top:56px;padding-bottom:56px}
+  body.rodzinne-page .cta#kontakt{padding-top:56px}
+}
+@media(max-width:560px){
+  body.rodzinne-page .opinie{padding-bottom:32px}
+}
+
+/* ══════════ NAWIGACJA KATEGORII pod „Co fotografuję” (tylko /rodzinne) ══════════
+   Lekka warstwa linków tekstowych — nie kafle, nie przyciski — żeby zdanie
+   "Wybierzcie to, co Was dotyczy" prowadziło od razu do konkretnej podstrony. */
+.oferta-nav{
+  display:grid;grid-template-columns:repeat(3,auto);justify-content:center;
+  gap:8px clamp(28px,4vw,56px);margin-top:34px;
+}
+.oferta-nav a{
+  display:flex;align-items:center;gap:10px;padding:11px 2px;
+  font-size:13px;letter-spacing:.05em;color:var(--ink-soft);
+  border-bottom:1px solid transparent;transition:.3s;white-space:nowrap;
+}
+.oferta-nav a:hover{color:var(--navy);border-bottom-color:var(--blue-pale)}
+.on-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--blue)}
+.on-arrow{opacity:0;transform:translateX(-4px);transition:.3s;color:var(--blue)}
+.oferta-nav a:hover .on-arrow{opacity:1;transform:translateX(0)}
+@media(max-width:820px){
+  .oferta-nav{grid-template-columns:repeat(2,auto);gap:6px clamp(20px,4vw,36px)}
+}
+@media(max-width:640px){
+  .oferta-nav{
+    grid-template-columns:1fr;justify-items:center;gap:0;margin-top:26px;
+    max-width:340px;margin-left:auto;margin-right:auto;
+  }
+  .oferta-nav a{
+    width:100%;justify-content:center;padding:15px 4px;
+    border-bottom:1px solid var(--blue-pale);white-space:normal;text-align:center;
+  }
+  .oferta-nav a:last-child{border-bottom:none}
+  .on-arrow{display:none}
+}
+
 /* ══════════ KAFLE — rzędy justowane, bez przycinania i bez dziur ══════════ */
 .tiles{display:block}
 .tile-row{display:flex;gap:clamp(12px,1.3vw,18px);margin-bottom:clamp(12px,1.3vw,18px)}
@@ -1052,6 +1102,12 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 }
 .tiles .tile img{width:100%;height:auto;display:block}
 .tiles .tile:hover{transform:translateY(-4px);box-shadow:0 30px 58px -28px rgba(31,50,71,.65)}
+/* Ta sekcja współdzieli nazwy klas .tiles/.tile z siatkami portfolio na innych
+   podstronach, gdzie .tile picture{position:absolute} jest celowe (obrazek
+   wypełnia kafelek o wymuszonym aspect-ratio). Tutaj kafelki mają wysokość
+   płynącą z proporcji zdjęcia (flex-row), więc picture musi zostać w flow —
+   inaczej cały rząd kafli zapada się do 0px wysokości. */
+.tile-row .tile picture{position:static;width:100%;height:auto}
 
 @media(max-width:940px){
   .tile-row{flex-wrap:wrap;gap:10px;margin-bottom:10px}
@@ -1168,4 +1224,58 @@ picture img{display:block;width:100%;height:auto}
   .faq-q span:first-child{font-size:15.5px}
   .faq-a-in{padding:0 22px 20px 2px}
   .faq-stopka{margin-top:40px;padding-top:28px}
+}
+
+/* ══════════ PODSTRONY PRAWNE (polityka prywatności / regulamin) ══════════
+   Współdzielone przez wszystkie podstrony StopMoments — ta sama typografia
+   i kolorystyka co reszta serwisu, ale bez ciężaru pełnego układu sekcji. */
+.legal-hero{padding:clamp(126px,13vw,158px) 0 46px;text-align:center;background:var(--cream-deep)}
+.legal-hero .crumb{
+  font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);
+  font-weight:500;margin-bottom:18px;
+}
+.legal-hero .crumb a{opacity:.72;transition:.3s}
+.legal-hero .crumb a:hover{opacity:1}
+.legal-hero h1{font-size:clamp(36px,5vw,58px);color:var(--navy);letter-spacing:-.02em}
+.legal-updated{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  margin-top:16px;
+}
+.legal-body{padding:64px 0 100px}
+.legal-in{max-width:760px;margin:0 auto}
+.legal-toc{
+  background:var(--cream-deep);border-radius:var(--r);padding:28px 30px;margin-bottom:56px;
+}
+.legal-toc div{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);
+  font-weight:500;margin-bottom:14px;
+}
+.legal-toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+.legal-toc li{font-size:14px;line-height:2;color:var(--ink-soft)}
+.legal-toc a{color:var(--ink-soft);transition:.25s}
+.legal-toc a:hover{color:var(--blue)}
+.legal-in h2{font-size:clamp(22px,2.4vw,28px);color:var(--navy);margin:46px 0 16px;letter-spacing:-.01em}
+.legal-in h2:first-of-type{margin-top:0}
+.legal-in p,.legal-in li{font-size:15.5px;line-height:1.9;color:var(--ink-soft)}
+.legal-in p{margin-bottom:16px}
+.legal-in ul,.legal-in ol{padding-left:22px;margin-bottom:18px}
+.legal-in li{margin-bottom:8px}
+.legal-in strong{color:var(--ink);font-weight:500}
+.legal-in a{color:var(--blue);border-bottom:1px solid var(--blue-pale)}
+.legal-in a:hover{border-bottom-color:var(--blue)}
+.legal-table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:13.5px}
+.legal-table th,.legal-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--blue-pale);vertical-align:top}
+.legal-table th{color:var(--navy);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.legal-note{
+  background:var(--cream-deep);border-left:2px solid var(--blue);border-radius:var(--r);
+  padding:18px 22px;margin:28px 0;
+}
+.legal-note p{margin-bottom:0;font-size:14px}
+.legal-fill{color:var(--blue);font-style:italic}
+@media(max-width:640px){
+  .legal-hero{padding:104px 0 36px}
+  .legal-body{padding:48px 0 72px}
+  .legal-toc{padding:22px 20px;margin-bottom:40px}
+  .legal-toc ol{columns:1}
+  .legal-in h2{margin:36px 0 14px}
 }
