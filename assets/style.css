@@ -133,18 +133,6 @@ h2 em{font-style:italic;color:var(--blue)}
   font-size:11px;letter-spacing:.13em;text-transform:uppercase;
   color:var(--blue);margin-top:22px;text-align:right;opacity:.75;
 }
-/* Przycisk „Zobacz więcej zdjęć” — tylko dla bardzo długich galerii na
-   mobile (patrz assets/app.js); .gal-hidden bez JS nigdy nie jest
-   dodawane, więc bez JS galeria zawsze renderuje się w całości. */
-.gal-hidden{display:none}
-.gal-more{
-  display:block;margin:18px auto 0;padding:13px 28px;
-  border:1px solid var(--blue-pale);border-radius:999px;background:transparent;
-  color:var(--navy);font-family:'Montserrat',sans-serif;
-  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
-  cursor:pointer;transition:.3s;
-}
-.gal-more:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ── PAKIETY ── */
 .pk{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
@@ -695,7 +683,7 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 
 /* ══════════ HERO TRYPTYK — dopasowanie do wysokości ekranu ══════════ */
 .heroC{
-  min-height:0;max-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:clamp(96px,11vh,124px) 0 clamp(26px,4vh,52px);
 }
 .heroC-top h1{
@@ -931,7 +919,7 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 
 /* ══════════ NAGŁÓWKI PODSTRON — dopasowanie do wysokości ekranu ══════════ */
 .hero-kolaz,.hero-okno{
-  min-height:0;max-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:clamp(92px,10.5vh,118px) 0 clamp(26px,4vh,50px);
 }
 .hero-kolaz h1,.hero-okno h1{
@@ -1026,33 +1014,29 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
    Używana wyłącznie tam, gdzie cross-link biznesowy ma mieć mniejszą wagę
    wizualną (StopMoments → koniec strony, pod kontaktem): niski, elegancki
    pasek zamiast pełnowymiarowego bloku z dużą ilością pustej przestrzeni. */
-.druga-marka.dm-sub{background:var(--cream);padding:32px 0 40px;border-top:1px solid rgba(110,134,158,.16);border-bottom:1px solid rgba(110,134,158,.16)}
-.druga-marka.dm-sub .dm-in{grid-template-columns:1fr 1.55fr;max-width:1180px;gap:clamp(32px,4.5vw,64px);align-items:center}
-.druga-marka.dm-sub .dm-foto{min-height:0;aspect-ratio:16/10;border-radius:5px}
-.druga-marka.dm-sub .dm-txt{padding:0 clamp(8px,2vw,28px) 0 0}
-.druga-marka.dm-sub .dm-nad{margin-bottom:12px;font-size:11px}
-.druga-marka.dm-sub .dm-txt h3{font-size:clamp(24px,2.3vw,30px);margin-bottom:15px;letter-spacing:-.012em}
-.druga-marka.dm-sub .dm-txt p{font-size:15.5px;line-height:1.72;margin-bottom:24px;max-width:46ch}
-.druga-marka.dm-sub .dm-link{font-size:12px;letter-spacing:.22em;font-weight:600;padding-bottom:7px}
+.druga-marka.dm-sub{background:var(--cream)}
+.druga-marka.dm-sub .dm-in{grid-template-columns:1fr 1.9fr;max-width:1100px}
+.druga-marka.dm-sub .dm-foto{min-height:0;aspect-ratio:16/10}
+.druga-marka.dm-sub .dm-txt{padding:clamp(22px,2.6vw,32px) clamp(28px,3.4vw,44px)}
+.druga-marka.dm-sub .dm-nad{margin-bottom:8px;font-size:10px}
+.druga-marka.dm-sub .dm-txt h3{font-size:clamp(19px,1.7vw,23px);margin-bottom:7px;letter-spacing:-.01em}
+.druga-marka.dm-sub .dm-txt p{font-size:14px;line-height:1.65;margin-bottom:12px;max-width:48ch}
+.druga-marka.dm-sub .dm-link{font-size:10.5px}
 /* Wersje tekstu: dłuższa na desktopie, jedno krótkie zdanie na mobile
    (patrz .dm-p-mobile / .dm-link-mobile niżej — przełączane media query). */
 .dm-p-mobile,.dm-link-mobile{display:none}
 @media(max-width:820px){
-  .druga-marka.dm-sub{padding:56px 0 64px}
-  .druga-marka.dm-sub .dm-in{grid-template-columns:1fr;gap:28px}
-  .druga-marka.dm-sub .dm-foto{aspect-ratio:16/10;order:-1}
-  .druga-marka.dm-sub .dm-txt{padding:0 6px}
-  .druga-marka.dm-sub .dm-link{padding:6px 0}
+  .druga-marka.dm-sub .dm-in{grid-template-columns:1fr}
+  .druga-marka.dm-sub .dm-foto{aspect-ratio:16/9;order:-1}
+  .druga-marka.dm-sub .dm-txt{padding:18px 22px 24px}
 }
 @media(max-width:640px){
-  .druga-marka.dm-sub{padding:48px 0 56px}
-  .druga-marka.dm-sub .dm-foto{aspect-ratio:4/3}
-  .druga-marka.dm-sub .dm-txt{padding:0 4px}
-  .druga-marka.dm-sub .dm-txt h3{font-size:22px;margin-bottom:12px}
+  .druga-marka.dm-sub .dm-foto{aspect-ratio:20/11}
+  .druga-marka.dm-sub .dm-txt{padding:16px 20px 22px}
+  .druga-marka.dm-sub .dm-txt h3{font-size:19px}
   .dm-p-desktop,.dm-link-desktop{display:none}
   .dm-p-mobile,.dm-link-mobile{display:block;margin-bottom:0}
-  .druga-marka.dm-sub .dm-txt p.dm-p-mobile{font-size:15px;line-height:1.6;margin-bottom:18px}
-  .druga-marka.dm-sub .dm-link-mobile{font-size:12px;letter-spacing:.16em;font-weight:600;padding:8px 0}
+  .druga-marka.dm-sub .dm-txt p.dm-p-mobile{font-size:14px;margin-bottom:14px}
 }
 
 
@@ -1074,36 +1058,36 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
   body.rodzinne-page .opinie{padding-bottom:32px}
 }
 
-/* ══════════ 10 podstron kategorii — ujednolicony rytm pionowy (desktop) ══════════
-   Ta sama podwójna-padding sprawa co na /rodzinne: bazowa reguła
-   section{padding:110px 0} sąsiadujących sekcji dawała 220px między
-   galerią a cennikiem, cennikiem a opiniami, opiniami a kontaktem —
-   dwa razy więcej niż docelowe ~90-120px. Selektory oparte o #cennik
-   (unikalny dla tych 10 podstron) i :has(), więc nic nie zmienia się
-   na /rodzinne ani gdziekolwiek indziej. Mobile ma już właściwy rytm
-   (40-96px z base rule 40px 0) — nie ruszane. */
-@media(min-width:941px){
-  section:has(+ #cennik){padding-bottom:56px}
-  #cennik{padding-top:56px;padding-bottom:56px}
-  #cennik ~ .opinie{padding-top:56px;padding-bottom:56px}
-  #cennik ~ .cta{padding-top:56px}
-  header.hero-kolaz + section,
-  header.hero-okno + section{padding-top:70px}
+/* ══════════ NAWIGACJA KATEGORII pod „Co fotografuję” (tylko /rodzinne) ══════════
+   Lekka warstwa linków tekstowych — nie kafle, nie przyciski — żeby zdanie
+   "Wybierzcie to, co Was dotyczy" prowadziło od razu do konkretnej podstrony. */
+.oferta-nav{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  row-gap:8px;column-gap:clamp(24px,3.2vw,48px);margin-top:34px;
 }
-
-/* blog.html — ta sama podwójna-padding sprawa przed końcowym CTA */
-@media(min-width:941px){
-  header.blog-head ~ section:has(+ .cta){padding-bottom:56px}
-  header.blog-head ~ .cta{padding-top:56px}
+.oferta-nav a{
+  display:flex;align-items:center;gap:10px;padding:11px 2px;
+  font-size:13px;letter-spacing:.05em;color:var(--ink-soft);
+  border-bottom:1px solid transparent;transition:.3s;white-space:nowrap;
 }
-
-/* blog.html + wpisy — CTA bezpośrednio nad stopką (bez cross-linku
-   pomiędzy), za duży odstęp nad stopką (item 14: „no big empty space
-   above it”). Dotyczy tylko stron, gdzie .cta sąsiaduje wprost z <footer>
-   — na /rodzinne i 10 podstronach kategorii między nimi jest jeszcze
-   .druga-marka, więc to ich nie dotyczy. */
-@media(min-width:941px){
-  .cta:has(+ footer){padding-bottom:56px}
+.oferta-nav a:hover{color:var(--navy);border-bottom-color:var(--blue-pale)}
+.on-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--blue)}
+.on-arrow{opacity:0;transform:translateX(-4px);transition:.3s;color:var(--blue)}
+.oferta-nav a:hover .on-arrow{opacity:1;transform:translateX(0)}
+@media(max-width:820px){
+  .oferta-nav a{white-space:normal}
+}
+@media(max-width:640px){
+  .oferta-nav{
+    flex-direction:column;align-items:center;row-gap:0;margin-top:26px;
+    max-width:340px;margin-left:auto;margin-right:auto;
+  }
+  .oferta-nav a{
+    width:100%;justify-content:center;padding:15px 4px;
+    border-bottom:1px solid var(--blue-pale);white-space:normal;text-align:center;
+  }
+  .oferta-nav a:last-child{border-bottom:none}
+  .on-arrow{display:none}
 }
 
 /* ══════════ KAFLE — rzędy justowane, bez przycinania i bez dziur ══════════ */
@@ -1257,7 +1241,7 @@ picture img{display:block;width:100%;height:auto}
   font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
   margin-top:16px;
 }
-.legal-body{padding:64px 0 56px}
+.legal-body{padding:64px 0 100px}
 .legal-in{max-width:760px;margin:0 auto}
 .legal-toc{
   background:var(--cream-deep);border-radius:var(--r);padding:28px 30px;margin-bottom:56px;
@@ -1279,8 +1263,7 @@ picture img{display:block;width:100%;height:auto}
 .legal-in strong{color:var(--ink);font-weight:500}
 .legal-in a{color:var(--blue);border-bottom:1px solid var(--blue-pale)}
 .legal-in a:hover{border-bottom-color:var(--blue)}
-.legal-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0 28px}
-.legal-table{width:100%;border-collapse:collapse;margin:0;font-size:13.5px}
+.legal-table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:13.5px}
 .legal-table th,.legal-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--blue-pale);vertical-align:top}
 .legal-table th{color:var(--navy);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .legal-note{
@@ -1291,48 +1274,8 @@ picture img{display:block;width:100%;height:auto}
 .legal-fill{color:var(--blue);font-style:italic}
 @media(max-width:640px){
   .legal-hero{padding:104px 0 36px}
-  .legal-body{padding:48px 0 40px}
+  .legal-body{padding:48px 0 72px}
   .legal-toc{padding:22px 20px;margin-bottom:40px}
   .legal-toc ol{columns:1}
   .legal-in h2{margin:36px 0 14px}
-  .legal-table{min-width:560px}
-}
-
-/* ══════════ E-BOOK — lead magnet (ten sam e-book co na /biznes) ══════════ */
-.lm-grid{display:grid;grid-template-columns:.5fr 1fr;gap:64px;align-items:center;max-width:1080px;margin:0 auto}
-.lm-cover{width:100%;max-width:280px;margin:0 auto}
-.lm-ph{
-  position:relative;aspect-ratio:900/1270;border-radius:var(--r);overflow:hidden;
-  box-shadow:0 32px 64px -28px rgba(31,50,71,.4);transform:rotate(-2deg);
-}
-.lm-ph img{width:100%;height:100%;object-fit:cover}
-.lm-copy h2{margin-bottom:16px}
-.lm-copy .lead{margin-bottom:28px;max-width:52ch}
-.lm-form{display:flex;flex-direction:column;gap:16px;max-width:480px}
-.lm-form[hidden],.lm-thanks[hidden]{display:none}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-row label{
-  display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-soft);font-weight:500;
-}
-.f-row input{
-  display:block;width:100%;margin-top:8px;padding:13px 14px;
-  border:1px solid var(--blue-pale);border-radius:var(--r);background:var(--white);
-  font-family:'Montserrat',sans-serif;font-size:14.5px;color:var(--ink);
-}
-.f-row input:focus{outline:none;border-color:var(--blue)}
-.lm-check{
-  display:flex;flex-direction:row;align-items:flex-start;gap:10px;
-  font-size:12.5px;line-height:1.6;color:var(--ink-soft);text-transform:none;letter-spacing:normal;
-}
-.lm-check input{margin-top:3px;flex-shrink:0}
-.lm-link{color:var(--blue);text-decoration:underline}
-.lm-form .btn{align-self:flex-start;border:none;cursor:pointer}
-.lm-thanks .lead{margin-bottom:20px}
-@media(max-width:820px){
-  .lm-grid{grid-template-columns:1fr;gap:36px;max-width:480px}
-  .lm-cover{max-width:220px}
-}
-@media(max-width:480px){
-  .f-row{grid-template-columns:1fr}
 }
