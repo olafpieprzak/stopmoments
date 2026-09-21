@@ -48,9 +48,46 @@ if (lb) {
     if (e.key === 'ArrowLeft') navLb(-1);
   });
 }
-function show(){ lbImg.src = imgs[idx].src; lbImg.alt = imgs[idx].alt; }
+// wybiera najlepszą dostępną wersję zdjęcia (duży .webp z <source>, a nie mały fallback .jpg)
+function bestSrc(img){
+  const picture = img.closest('picture');
+  const source = picture && picture.querySelector('source[type="image/webp"]');
+  if (!source || !source.srcset) return img.src;
+  let best = null, bestW = -1;
+  source.srcset.split(',').forEach(entry => {
+    const parts = entry.trim().split(/\s+/);
+    if (parts.length < 2) return;
+    const w = parseInt(parts[1], 10);
+    if (w > bestW) { bestW = w; best = parts[0]; }
+  });
+  return best || img.src;
+}
+function show(){ lbImg.src = bestSrc(imgs[idx]); lbImg.alt = imgs[idx].alt; }
 function navLb(d){ idx = (idx + d + imgs.length) % imgs.length; show(); }
 function closeLb(){ lb.classList.remove('on'); document.body.style.overflow = ''; }
+
+// ── GALERIE: na mobile ogranicz bardzo długie galerie „Zobacz więcej” ────
+// Dotyczy tylko galerii, które i tak są długie (>10 rzędów) — reszta
+// (krótsze kategorie) renderuje się bez zmian, w całości.
+(function(){
+  if (!window.matchMedia('(max-width:640px)').matches) return;
+  const ROW_LIMIT = 8;
+  document.querySelectorAll('.gal').forEach(gal => {
+    const rows = Array.from(gal.children).filter(el => el.classList.contains('jrow'));
+    if (rows.length <= 10) return;
+    rows.slice(ROW_LIMIT).forEach(row => row.classList.add('gal-hidden'));
+    const ukryte = rows.length - ROW_LIMIT;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'gal-more';
+    btn.textContent = `Zobacz więcej zdjęć (+${ukryte})`;
+    btn.addEventListener('click', () => {
+      rows.forEach(row => row.classList.remove('gal-hidden'));
+      btn.remove();
+    });
+    gal.insertAdjacentElement('afterend', btn);
+  });
+})();
 
 // ── INSTAGRAM (Behold.so JSON feed) ──────────────────────────────
 // Wklej tutaj adres swojego feedu z panelu Behold, np.:
@@ -137,5 +174,21 @@ const IG_COUNT = 6; // zajawka jest zwarta — max 6 na desktopie, 4 na mobile (
       const panel = document.getElementById(btn.getAttribute('aria-controls'));
       panel.style.height = panel.scrollHeight + 'px';
     });
+  });
+})();
+
+
+// ── E-BOOK (lead magnet) — MOCK submit, tak jak na /biznes ──────────
+// Docelowo podłączyć wysyłkę do systemu mailowego (MailerLite / Brevo /
+// GetResponse) zamiast poniższego toggle'a formularz→podziękowanie.
+(function(){
+  const lmForm = document.getElementById('lmForm');
+  const lmThanks = document.getElementById('lmThanks');
+  if (!lmForm || !lmThanks) return;
+  lmForm.addEventListener('submit', e => {
+    e.preventDefault();
+    // TODO: wyslijDoSystemuMailowego(lmForm.elements['lm-email'].value, lmForm.elements['lm-name'].value)
+    lmForm.hidden = true;
+    lmThanks.hidden = false;
   });
 })();
