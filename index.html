@@ -90,9 +90,9 @@
   .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, var(--cream) 0%, rgba(251,248,244,.85) 4%, rgba(251,248,244,0) 22%);z-index:2}
 
   /* per-category framing — each photo cropped on purpose, not just "cover" */
-  .layer[data-cat="default"] img{ object-position: 62% 14%; }
-  .layer[data-cat="stories"] img{ object-position: 58% 16%; }
-  .layer[data-cat="business"] img{ object-position: 46% 9%; }
+  .layer[data-cat="default"] img{ object-position: 62% 50%; }
+  .layer[data-cat="stories"] img{ object-position: 58% 50%; }
+  .layer[data-cat="business"] img{ object-position: 46% 50%; }
 
   .overlap-type{position:absolute;z-index:4;top:9%;left:calc(39% - 40px);right:4%;pointer-events:none;user-select:none}
   .type-scrim{position:absolute;top:-14%;bottom:-20%;left:-16%;right:-6%;z-index:-1;border-radius:6px;
@@ -123,16 +123,16 @@
     .path .ptag{margin-left:0}
     .hero-cta-main.show{margin-top:16px}
 
-    .layer[data-cat="default"] img{ object-position: 68% 18%; }
-    .layer[data-cat="stories"] img{ object-position: 64% 20%; }
+    .layer[data-cat="default"] img{ object-position: 68% 50%; }
+    .layer[data-cat="stories"] img{ object-position: 64% 50%; }
     .layer[data-cat="business"] img{ object-position: 50% 50%; }
   }
 
   @media(max-width:600px){
     .hero-photo{height:52vh;min-height:340px}
-    .layer[data-cat="default"] img{ object-position: 72% 17%; }
-    .layer[data-cat="stories"] img{ object-position: 68% 19%; }
-    .layer[data-cat="business"] img{ object-position: 48% 6%; }
+    .layer[data-cat="default"] img{ object-position: 72% 50%; }
+    .layer[data-cat="stories"] img{ object-position: 68% 50%; }
+    .layer[data-cat="business"] img{ object-position: 48% 45%; }
   }
 
   /* WYBIERZ */
@@ -172,7 +172,7 @@
   .pf-grid a:hover img{transform:scale(1.06)}
 
   /* O MNIE */
-  .about{background:var(--cream-deep)}
+  .about{background:var(--cream-deep);padding-top:56px;padding-bottom:56px}
   .about-grid{display:grid;grid-template-columns:.8fr 1fr .75fr;gap:56px;align-items:center}
   .about-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:3/4}
   .about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
@@ -185,13 +185,13 @@
   .about-features svg{width:20px;height:20px;color:var(--blue);flex-shrink:0}
 
   /* TESTIMONIALS */
+  #opinie{padding-top:56px;padding-bottom:56px}
   .testi-head{text-align:center;margin-bottom:44px}
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-  .testi-split{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  .testi-col-h{font-size:1.2rem;color:var(--navy);margin-bottom:18px;text-align:center}
-  .testi-col .testi-card{margin-bottom:20px}
-  .testi-col .testi-card:last-child{margin-bottom:0}
-  .testi-card{background:#fff;padding:32px 28px;border-radius:4px;box-shadow:0 20px 40px -28px rgba(31,50,71,.25)}
+  .testi-split{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;column-gap:40px;row-gap:20px}
+  .testi-col{display:grid;grid-template-rows:subgrid;grid-row:span 3}
+  .testi-col-h{font-size:1.2rem;color:var(--navy);text-align:center}
+  .testi-card{background:#fff;padding:32px 28px;border-radius:4px;box-shadow:0 20px 40px -28px rgba(31,50,71,.25);height:100%}
   .testi-card .q{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--blue-pale);line-height:1;margin-bottom:6px}
   .testi-card blockquote{font-size:.9rem;color:var(--ink-soft);margin-bottom:18px;line-height:1.65}
   .testi-card b{display:block;font-size:.86rem;color:var(--navy)}
@@ -216,6 +216,10 @@
 
   @media(max-width:900px){
     section{padding:64px 0}
+    #portfolio{padding-bottom:32px}
+    .about{padding-top:32px;padding-bottom:32px}
+    #opinie{padding-top:32px;padding-bottom:32px}
+    #kontakt{padding:40px 0!important}
     .choose-grid{grid-template-columns:1fr}
     .choose-card{min-height:420px}
     .pf-grid{grid-template-columns:repeat(3,1fr)}
@@ -223,7 +227,12 @@
     .about-grid{grid-template-columns:1fr;gap:32px}
     .about-photo{max-width:320px;margin:0 auto}
     .testi-grid{grid-template-columns:1fr}
-    .testi-split{grid-template-columns:1fr;gap:32px}
+    .testi-split{grid-template-columns:1fr;grid-template-rows:none;gap:0}
+    .testi-col{display:block;grid-row:auto}
+    .testi-col-h{margin-bottom:18px}
+    .testi-col+.testi-col{margin-top:32px}
+    .testi-card{margin-bottom:20px}
+    .testi-card:last-child{margin-bottom:0}
     .foot-grid{grid-template-columns:repeat(3,1fr)}
     .foot-cols{grid-template-columns:repeat(2,1fr);gap:32px 20px}
     .foot-brand{grid-column:1/-1;margin-bottom:8px}
@@ -416,7 +425,7 @@
 </section>
 
 
-<section id="portfolio" style="padding-top:40px">
+<section id="portfolio" style="padding-top:40px;padding-bottom:56px">
   <div class="wrap" style="text-align:center">
     <span class="eyebrow">Realne historie, prawdziwe emocje</span>
     <h2 style="margin:10px 0 36px">Zobacz moje kadry</h2>
@@ -424,7 +433,7 @@
       <a href="biznes.html"><img src="img/home/pf-1-laptop.jpg" alt="Portret biznesowy przy laptopie"></a>
       <a href="rodzinne.html"><img src="img/home/pf-4-rodzina.jpg" alt="Sesja rodzinna w plenerze"></a>
       <a href="biznes.html"><img src="img/home/pf-5-scena.jpg" alt="Konferencja — publiczność na sali"></a>
-      <a href="biznes.html"><img src="img/home/pf-2-emocje.jpg" alt="Prelegentka na scenie — bliski kadr z emocjami"></a>
+      <a href="biznes.html"><img src="img/home/pf-3-portret-front.jpg" alt="Portret biznesowy — sesja wizerunkowa w studiu"></a>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:36px">
       <a class="btn btn-dark" href="biznes.html">Zobacz ofertę biznesową</a>
@@ -493,7 +502,7 @@
 </section>
 
 
-<section id="kontakt" style="padding:90px 0;background:var(--cream-deep)">
+<section id="kontakt" style="padding:56px 0;background:var(--cream-deep)">
   <div class="wrap" style="max-width:680px;text-align:center;margin:0 auto">
     <span class="eyebrow">Kontakt</span>
     <h2 style="font-size:2rem;color:var(--navy);margin:14px 0 16px">Napiszmy, co u&nbsp;Ciebie</h2>
