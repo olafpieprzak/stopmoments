@@ -1,2 +1,7 @@
 /przyjecia.html  /studniowki-polmetki.html  301
 /przyjecia       /studniowki-polmetki.html  301
+
+# Strona główna sekcji StopMoments pod czystym adresem /stopmoments
+# (rewrite 200 = adres w pasku przeglądarki zostaje /stopmoments, treść z rodzinne.html)
+/stopmoments     /rodzinne.html  200
+/stopmoments/    /rodzinne.html  200

@@ -6,6 +6,17 @@
 <meta name="color-scheme" content="light only">
 <title>Monika Adamczyk Fotografia — sesje biznesowe i rodzinne | Ropczyce, Podkarpacie</title>
 <meta name="description" content="Fotografia, która buduje markę i zatrzymuje najważniejsze chwile. Sesje biznesowe, wizerunkowe i eventowe dla firm oraz sesje rodzinne, śluby i chrzciny (StopMoments). Ropczyce, Podkarpacie.">
+<link rel="canonical" href="https://monikaadamczyk.pl/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Monika Adamczyk Fotografia">
+<meta property="og:title" content="Monika Adamczyk Fotografia — sesje biznesowe i rodzinne | Ropczyce, Podkarpacie">
+<meta property="og:description" content="Fotografia, która buduje markę i zatrzymuje najważniejsze chwile. Sesje biznesowe, wizerunkowe i eventowe dla firm oraz sesje rodzinne, śluby i chrzciny (StopMoments). Ropczyce, Podkarpacie.">
+<meta property="og:url" content="https://monikaadamczyk.pl/">
+<meta property="og:image" content="https://monikaadamczyk.pl/img/home/hero-couch.jpg">
+<meta property="og:locale" content="pl_PL">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Monika Adamczyk Fotografia","url":"https://monikaadamczyk.pl/","telephone":"+48791601963","email":"kontakt@monikaadamczyk.pl","areaServed":["Ropczyce","Sędziszów Małopolski","Dębica"],"sameAs":["https://www.instagram.com/monika_adamczyk_fotografia","https://www.instagram.com/stopmoments.foto"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
@@ -94,7 +105,7 @@
   .layer[data-cat="stories"] img{ object-position: 58% 50%; }
   .layer[data-cat="business"] img{ object-position: 50% 45%; }
 
-  .overlap-type{position:absolute;z-index:4;top:9%;left:calc(39% - 40px);right:4%;pointer-events:none;user-select:none}
+  .overlap-type{position:absolute;z-index:4;top:9%;left:calc(39% - 40px);right:4%;pointer-events:none;user-select:none;margin:0;font-weight:inherit;font-size:inherit}
   .type-scrim{position:absolute;top:-14%;bottom:-20%;left:-16%;right:-6%;z-index:-1;border-radius:6px;
     background:radial-gradient(ellipse 60% 100% at 0% 40%, rgba(251,248,244,.9) 0%, rgba(251,248,244,.55) 38%, rgba(251,248,244,0) 68%);
     opacity:0;transition:opacity .45s ease;}
@@ -249,7 +260,7 @@
     </a>
     <div class="nav-links">
       <a href="biznes.html">Dla biznesu</a>
-      <a href="rodzinne.html">Dla ciebie</a>
+      <a href="https://monikaadamczyk.pl/stopmoments/">Dla ciebie</a>
       <a href="#portfolio">Portfolio</a>
       <a href="#o-mnie">O mnie</a>
       <a href="#kontakt">Kontakt</a>
@@ -272,11 +283,11 @@
     <div class="layer" data-cat="business"><img src="img/home/hero-studio.jpg" alt="Monika Adamczyk — praca"></div>
     <div class="layer" data-cat="stories"><img src="img/home/hero-couch.jpg" alt="Monika Adamczyk — rodzina"></div>
   </div>
-  <div class="overlap-type" id="overlapType">
+  <h1 class="overlap-type" id="overlapType">
     <div class="type-scrim"></div>
     <span id="hType1">Twoja historia.</span>
     <span id="hType2" class="accent">Moje światło.</span>
-  </div>
+  </h1>
   <div class="hero-copy">
     <span class="eyebrow">Fotografia biznesowa i rodzinna</span>
     <p class="lede" id="heroLede">Tworzę zdjęcia, które budują marki i zatrzymują historie, do których chce się wracać.</p>
@@ -313,7 +324,7 @@
   var COPY = {
     default: { h1:'Twoja historia.', h2:'Moje światło.', lede:'Tworzę zdjęcia, które budują marki i zatrzymują historie, do których chce się wracać.' },
     business: { h1:'Twoja marka.', h2:'Moje światło.', lede:'Sesje wizerunkowe, zdjęcia zespołów i reportaże, które pomagają budować profesjonalny i spójny obraz marki.', cta:'ZOBACZ OFERTĘ BIZNESOWĄ', href:'biznes.html' },
-    stories: { h1:'Twoje chwile.', h2:'Moje światło.', lede:'Chrzty, urodziny, imprezy okolicznościowe i sesje rodzinne — a przy okazji też kobiece i ciążowe.', cta:'ZOBACZ OFERTĘ STOPMOMENTS', href:'rodzinne.html' },
+    stories: { h1:'Twoje chwile.', h2:'Moje światło.', lede:'Chrzty, urodziny, imprezy okolicznościowe i sesje rodzinne — a przy okazji też kobiece i ciążowe.', cta:'ZOBACZ OFERTĘ STOPMOMENTS', href:'https://monikaadamczyk.pl/stopmoments/' },
   };
 
   var current = null;
@@ -411,7 +422,7 @@
           <span class="choose-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
         </div>
       </a>
-      <a class="choose-card you" href="rodzinne.html">
+      <a class="choose-card you" href="https://monikaadamczyk.pl/stopmoments/">
         <img src="img/home/card-chrzest-2.jpg" alt="Sesja z chrztu świętego — dziecko w białej sukience">
         <div class="choose-inner">
           <div class="choose-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.3 5 5.7 5c2 0 3.5 1.1 4.3 2.6C10.8 6.1 12.3 5 14.3 5c3.4 0 5.2 3.4 3.7 6.8C15.5 16.4 12 21 12 21z"/></svg></div>
@@ -431,13 +442,13 @@
     <h2 style="margin:10px 0 36px">Zobacz moje kadry</h2>
     <div class="pf-grid pf-grid-4">
       <a href="biznes.html"><img src="img/home/pf-1-laptop.jpg" alt="Portret biznesowy przy laptopie"></a>
-      <a href="rodzinne.html"><img src="img/home/pf-4-rodzina.jpg" alt="Sesja rodzinna w plenerze"></a>
+      <a href="https://monikaadamczyk.pl/stopmoments/"><img src="img/home/pf-4-rodzina.jpg" alt="Sesja rodzinna w plenerze"></a>
       <a href="biznes.html"><img src="img/home/pf-5-scena.jpg" alt="Konferencja — publiczność na sali"></a>
       <a href="biznes.html"><img src="img/home/pf-3-portret-front.jpg" alt="Portret biznesowy — sesja wizerunkowa w studiu"></a>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:36px">
       <a class="btn btn-dark" href="biznes.html">Zobacz ofertę biznesową</a>
-      <a class="btn btn-fill-blue" href="rodzinne.html">Zobacz sesje rodzinne</a>
+      <a class="btn btn-fill-blue" href="https://monikaadamczyk.pl/stopmoments/">Zobacz sesje rodzinne</a>
     </div>
   </div>
 </section>
@@ -509,7 +520,7 @@
     <p style="color:var(--ink-soft);margin-bottom:32px">Wybierz, o&nbsp;jaką sesję pytasz — trafisz od razu do właściwego formularza lub kontaktu na WhatsApp.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px">
       <a class="btn btn-dark" href="biznes.html#kontakt">Zapytaj o&nbsp;sesję biznesową</a>
-      <a class="btn btn-outline" href="rodzinne.html#kontakt">Zapytaj o&nbsp;sesję rodzinną</a>
+      <a class="btn btn-outline" href="https://monikaadamczyk.pl/stopmoments/#kontakt">Zapytaj o&nbsp;sesję rodzinną</a>
     </div>
     <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:.88rem;color:var(--ink-soft)">
       <a href="tel:+48791601963" style="color:inherit;font-weight:600">791 601 963</a>
@@ -532,9 +543,9 @@
       </div>
       <div class="foot-col">
         <h5>Dla ciebie</h5>
-        <a href="rodzinne.html">Sesje rodzinne</a>
-        <a href="rodzinne.html">Reportaże z&nbsp;życia</a>
-        <a href="rodzinne.html">Sesje kobiece</a>
+        <a href="https://monikaadamczyk.pl/stopmoments/">Sesje rodzinne</a>
+        <a href="https://monikaadamczyk.pl/stopmoments/">Reportaże z&nbsp;życia</a>
+        <a href="https://monikaadamczyk.pl/stopmoments/">Sesje kobiece</a>
       </div>
       <div class="foot-col">
         <h5>O&nbsp;mnie</h5>
