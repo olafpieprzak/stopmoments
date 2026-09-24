@@ -53,6 +53,10 @@ nav.solid .nav-links a{color:var(--ink-soft)}
 .nav-links a:hover{color:var(--blue);opacity:1}
 .nav-cta{border:1px solid rgba(255,255,255,.6);padding:9px 22px;border-radius:var(--r)}
 nav.solid .nav-cta{border-color:var(--blue);color:var(--blue)!important}
+.ig-link{display:inline-flex;align-items:center}
+.ig-link .ig{width:19px;height:19px;color:var(--white);opacity:.92;transition:.3s}
+nav.solid .ig-link .ig{color:var(--ink-soft)}
+.ig-link:hover .ig{color:var(--blue);opacity:1}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
 .burger span{width:22px;height:1px;background:var(--white);transition:.3s}
 nav.solid .burger span{background:var(--navy)}
@@ -491,6 +495,9 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
     border:1px solid var(--blue)!important;color:var(--blue)!important;
     text-align:center;margin-top:20px;padding:15px!important;border-bottom:1px solid var(--blue)!important;
   }
+  .nav-links .ig-link{display:flex;align-items:center;gap:10px}
+  .nav-links .ig-link .ig{color:var(--ink)!important;opacity:1}
+  .nav-links .ig-link::after{content:'Instagram'}
   .burger{z-index:120;position:relative}
   .burger.x span:nth-child(1){transform:translateY(6px) rotate(45deg)}
   .burger.x span:nth-child(2){opacity:0}
