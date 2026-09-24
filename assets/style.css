@@ -1331,11 +1331,8 @@ picture img{display:block;width:100%;height:auto}
   max-width:1080px;margin:0 auto;
 }
 .eb-cover{grid-area:cover;align-self:center;width:100%;max-width:240px;margin:0 auto}
-.lm-ph{
-  position:relative;aspect-ratio:900/1270;border-radius:14px;overflow:hidden;
-  box-shadow:0 28px 56px -24px rgba(47,54,76,.35);
-}
-.lm-ph img{width:100%;height:100%;object-fit:cover}
+.eb-cover-frame{position:relative;line-height:0}
+.eb-cover-frame img{width:100%;height:auto;display:block}
 .eb-text{grid-area:text}
 .eb-text h2{margin-bottom:16px}
 .eb-text .lead{margin-bottom:14px;max-width:48ch}
