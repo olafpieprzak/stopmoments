@@ -74,10 +74,16 @@ async function getToken(env) {
     }
   }
 
+  // Sekret IG_TOKEN_SEED został podmieniony (np. nowy token po wygaśnięciu starego)
+  // — stary rekord z KV przestaje obowiązywać, bierzemy nowy token z sekretu.
+  if (record && record.seed && env.IG_TOKEN_SEED && record.seed !== env.IG_TOKEN_SEED) {
+    record = null;
+  }
+
   // Pierwszy start (albo pusty KV) — bierzemy token z sekretu.
   if (!record || !record.token) {
     if (!env.IG_TOKEN_SEED) return null;
-    record = { token: env.IG_TOKEN_SEED, obtainedAt: Date.now() };
+    record = { token: env.IG_TOKEN_SEED, obtainedAt: Date.now(), seed: env.IG_TOKEN_SEED };
     if (kv) await kv.put(TOKEN_KEY, JSON.stringify(record));
   }
 
@@ -89,7 +95,7 @@ async function getToken(env) {
       if (res.ok) {
         const data = await res.json();
         if (data.access_token) {
-          record = { token: data.access_token, obtainedAt: Date.now() };
+          record = { token: data.access_token, obtainedAt: Date.now(), seed: env.IG_TOKEN_SEED || record.seed };
           await kv.put(TOKEN_KEY, JSON.stringify(record));
         }
       }
@@ -174,7 +180,7 @@ export async function onRequestGet({ env, waitUntil, request }) {
 
   const token = await getToken(env);
   if (!token) {
-    return json({ data: [], error: 'no_token' }, 200);
+    return json({ data: [], error: 'no_token' }, 200, { 'Cache-Control': 'no-store' });
   }
 
   try {
@@ -202,6 +208,12 @@ export async function onRequestGet({ env, waitUntil, request }) {
       });
     }
 
+    // Pusta odpowiedź (błąd tokenu, awaria API) nie może być cache'owana na krawędzi
+    // przez 30 min — inaczej po naprawie tokenu feed wraca z opóźnieniem.
+    if (!posts.length) {
+      return json({ data: [], error: 'empty' }, 200, { 'Cache-Control': 'no-store' });
+    }
+
     posts = posts.map((p) => ({
       id: p.id,
       caption: p.caption || '',
@@ -222,6 +234,6 @@ export async function onRequestGet({ env, waitUntil, request }) {
       const stale = await kv.get(FEED_KEY, { type: 'json' });
       if (stale) return json({ data: stale.data, stale: true });
     }
-    return json({ data: [], error: 'fetch_failed' }, 200);
+    return json({ data: [], error: 'fetch_failed', status: (err && err.status) || null }, 200, { 'Cache-Control': 'no-store' });
   }
 }
