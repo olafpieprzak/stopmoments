@@ -1428,3 +1428,18 @@ picture img{display:block;width:100%;height:auto}
   section.sec-tight{padding:70px 0}
   section:has(+ section.sec-tight){padding-bottom:40px}
 }
+
+/* ══════════ „Zobacz również” + pas drugiej marki na podstronach ══════════
+   1) Blok „Zobacz również” miał section padding + 44px wewnętrznego, co dawało
+      ~230px pustki przed zdjęciem biznesowym (mobile). Teraz zwarty.
+   2) Zdjęcie biznesowe w pasie .druga-marka (wariant bez .dm-sub) na mobile miało
+      170px wysokości i przy 1400×982 źródle ucinało głowy — dajemy proporcję 4:3
+      i kadr od góry. */
+section.see-also{padding:44px 0 40px}
+@media(max-width:820px){
+  section.see-also{padding:30px 0 28px}
+}
+@media(max-width:820px){
+  .druga-marka:not(.dm-sub) .dm-foto{min-height:0;aspect-ratio:4/3}
+  .druga-marka:not(.dm-sub) .dm-foto img{object-position:50% 12%}
+}
