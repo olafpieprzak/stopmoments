@@ -1450,3 +1450,7 @@ section.see-also{padding:44px 0 40px}
   font-size:clamp(21px,2.2vw,25px);color:var(--navy);
   margin:30px 0 8px;line-height:1.25;
 }
+
+/* pas drugiej marki: zdjęcie jest odnośnikiem do /biznes.html */
+.dm-foto>a{position:absolute;inset:0;display:block}
+.dm-foto::after{pointer-events:none}
