@@ -1457,6 +1457,6 @@ section.see-also{padding:44px 0 40px}
 
 /* logo StopMoments (skryptowe, mauve) — nawigacja i stopka */
 .brand-logo{display:block;line-height:0;color:inherit}
-.brand-logo img{display:block;width:250px;height:auto}
-.foot-logo{display:block;width:230px;height:auto;margin:0 0 10px -6px}
-@media(max-width:720px){.brand-logo img{width:190px}.foot-logo{width:200px}}
+.brand-logo img{display:block;width:200px;height:auto}
+.foot-logo{display:block;width:190px;height:auto;margin:0 0 10px -6px}
+@media(max-width:720px){.brand-logo img{width:150px}.foot-logo{width:170px}}
