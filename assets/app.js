@@ -19,9 +19,16 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 }));
 
 // ── animacja pojawiania ──────────────────────────────────────────
+// threshold liczony jako % WYSOKOŚCI ELEMENTU nigdy się nie spełniał dla
+// bardzo długich sekcji (np. .gal z kilkunastoma zdjęciami na mobile —
+// wysokość kontenera znacznie przekraczała wysokość ekranu), więc te
+// sekcje zostawały na zawsze niewidoczne (opacity:0), mimo że zdjęcia
+// w środku były już wczytane. rootMargin działa niezależnie od wysokości
+// elementu — animacja startuje, gdy tylko jego górna krawędź wejdzie
+// w widoczny obszar.
 const io = new IntersectionObserver(
   e => e.forEach(x => x.isIntersecting && x.target.classList.add('in')),
-  { threshold: .08 }
+  { threshold: 0, rootMargin: '0px 0px -10% 0px' }
 );
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 

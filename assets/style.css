@@ -737,7 +737,9 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 .heroC-top .btn-o:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 
 @media(max-width:940px){
-  .heroC{min-height:auto;padding:104px 0 40px}
+  /* jak wyżej przy .hero-kolaz/.hero-okno: bez max-height treść (zwłaszcza
+     ze zdjęciem pełnej szerokości) bywała ucinana od góry i od dołu */
+  .heroC{min-height:auto;max-height:none;padding:104px 0 40px}
   .heroC-imgs img{max-height:none}
 }
 /* Mobile (telefon): naprawa zdjęcia w hero — kontener .heroC-imgs jako flex
@@ -969,7 +971,10 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
   .okno-rama img{max-height:44vh}
 }
 @media(max-width:900px){
-  .hero-kolaz,.hero-okno{min-height:auto;padding:104px 0 56px}
+  /* Na mobile treść (kolaż + tekst) bywa wyższa niż 100svh — z max-height
+     i overflow:hidden górna (i dolna) część była ucinana pod nawigacją.
+     Usuwamy limit wysokości, nagłówek rośnie do naturalnej wysokości. */
+  .hero-kolaz,.hero-okno{min-height:auto;max-height:none;padding:104px 0 56px}
   .kolaz img,.okno-rama img{max-height:none}
 }
 
