@@ -710,14 +710,14 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 
 /* ══════════ HERO TRYPTYK — dopasowanie do wysokości ekranu ══════════ */
 .heroC{
-  min-height:0;max-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(96px,11vh,124px) 0 clamp(26px,4vh,52px);
+  min-height:0;max-height:none;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(116px,12.5vh,138px) 0 clamp(22px,3.4vh,46px);
 }
 .heroC-top h1{
   font-size:clamp(36px,4.9vw,68px);
   line-height:1.03;margin-bottom:18px;
 }
-.heroC-top .eyebrow{margin-bottom:16px}
+.heroC-top .eyebrow{margin-bottom:16px;color:var(--blue);font-weight:500}
 .heroC-top p{
   font-size:clamp(15px,1.18vw,17px);line-height:1.78;
   max-width:52ch;margin:0 auto 26px;
@@ -948,8 +948,8 @@ footer{background:var(--cream-deep);padding:64px 0 40px;font-size:13px;color:var
 
 /* ══════════ NAGŁÓWKI PODSTRON — dopasowanie do wysokości ekranu ══════════ */
 .hero-kolaz,.hero-okno{
-  min-height:0;max-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(92px,10.5vh,118px) 0 clamp(26px,4vh,50px);
+  min-height:0;max-height:none;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(116px,12.5vh,138px) 0 clamp(22px,3.4vh,46px);
 }
 .hero-kolaz h1,.hero-okno h1{
   font-size:clamp(38px,5.2vw,74px);
@@ -1404,4 +1404,27 @@ picture img{display:block;width:100%;height:auto}
 @media(max-width:480px){
   .eb-cover{max-width:min(200px,58vw)}
   .f-row{grid-template-columns:1fr}
+}
+
+
+/* ══════════ Karta cennika — jedna szeroka karta (desktop) ══════════
+   Pojedyncza karta w siatce pk-2 zajmowała pół kolumny (~250px) i była
+   wąska, wysoka i trudna do czytania. Teraz: jedna kolumna ~760px,
+   lista w dwóch kolumnach, cena w jednym wierszu. */
+.pk-1{grid-template-columns:1fr;max-width:760px;margin-left:auto;margin-right:auto}
+.pk-1 .card{padding:42px 44px}
+.pk-1 .price{white-space:nowrap}
+.pk-1 .card h4{font-size:34px}
+@media(min-width:941px){
+  .pk-1 .card ul{columns:2;column-gap:44px}
+  .pk-1 .card li{break-inside:avoid}
+}
+@media(max-width:940px){
+  .pk-1 .card{padding:30px 24px}
+}
+
+/* sekcje samego tekstu pod rząd — bez podwójnego paddingu (110+110px) */
+@media(min-width:941px){
+  section.sec-tight{padding:70px 0}
+  section:has(+ section.sec-tight){padding-bottom:40px}
 }
