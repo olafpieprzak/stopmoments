@@ -1454,3 +1454,9 @@ section.see-also{padding:44px 0 40px}
 /* pas drugiej marki: zdjęcie jest odnośnikiem do /biznes.html */
 .dm-foto>a{position:absolute;inset:0;display:block}
 .dm-foto::after{pointer-events:none}
+
+/* logo StopMoments (skryptowe, mauve) — nawigacja i stopka */
+.brand-logo{display:block;line-height:0;color:inherit}
+.brand-logo img{display:block;width:250px;height:auto}
+.foot-logo{display:block;width:230px;height:auto;margin:0 0 10px -6px}
+@media(max-width:720px){.brand-logo img{width:190px}.foot-logo{width:200px}}
